@@ -729,6 +729,152 @@ button, input, select, textarea {
   }
 }
 
+/* DirectLink Sponsor Banners */
+.ad-sponsor-banner {
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+  background: linear-gradient(135deg, #ffffff 0%, #fffbf0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.ad-sponsor-banner:hover {
+  transform: translateY(-2px) scale(1.01);
+  border-color: var(--sunshine-orange);
+  box-shadow: 4px 4px 0 var(--sunshine-orange);
+}
+
+.ad-banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 1.25rem;
+  gap: 0.75rem;
+}
+
+.ad-badge-sparkle {
+  font-family: var(--font-hand);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 8px;
+  background: var(--sunshine-yellow);
+  color: var(--ink-main);
+  border: 1.5px solid var(--ink-main);
+  white-space: nowrap;
+}
+
+.ad-banner-text {
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink-main);
+  text-align: center;
+  flex: 1;
+}
+
+.ad-cta-btn {
+  font-family: var(--font-hand);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--border-sketchy-soft);
+  background: var(--sunshine-orange);
+  color: #ffffff;
+  border: 1.5px solid var(--ink-main);
+  box-shadow: 2px 2px 0 var(--ink-main);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.ad-sponsor-banner:hover .ad-cta-btn {
+  background: var(--ink-main);
+  color: var(--sunshine-yellow);
+}
+
+@media (max-width: 768px) {
+  .ad-badge-sparkle {
+    display: none;
+  }
+  .ad-banner-text {
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ad-cta-btn {
+    font-size: 0.82rem;
+    padding: 0.25rem 0.55rem;
+  }
+}
+
+/* Sidebar Sponsor Lounge */
+.ad-sidebar-banner {
+  background: linear-gradient(180deg, #ffffff 0%, #fffdf5 100%);
+}
+
+.ad-sidebar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.75rem 1.25rem;
+  height: 100%;
+}
+
+.ad-sidebar-icon {
+  font-size: 2.75rem;
+  margin-bottom: 0.75rem;
+  filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.1));
+}
+
+.ad-sidebar-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--ink-main);
+  margin: 0.75rem 0 0.5rem;
+  line-height: 1.2;
+}
+
+.ad-sidebar-desc {
+  font-family: var(--font-hand);
+  font-size: 1.05rem;
+  color: var(--ink-secondary);
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+/* Header Reward Button */
+.sponsor-reward-btn {
+  font-family: var(--font-hand);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--border-sketchy-soft);
+  background: #fff3bf;
+  color: #854d0e;
+  border: 1.5px solid var(--ink-main);
+  box-shadow: 2px 2px 0 var(--ink-main);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.sponsor-reward-btn:hover {
+  transform: translateY(-2px);
+  background: var(--sunshine-yellow);
+  box-shadow: 3px 3px 0 var(--ink-main);
+  color: var(--ink-main);
+}
+
 /* ==========================================================================
    YOUTUBE-STYLE 16:9 GAME GRID (Sketchbook Cards)
    ========================================================================== */

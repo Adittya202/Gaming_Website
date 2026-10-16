@@ -114,6 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
       targetLinkDisplay.textContent = targetUrl || 'No link configured';
     }
 
+    // HilltopAds DirectLink URL (Zone #7524905)
+    const SPONSOR_DIRECT_URL = 'https://elementarywhole.com/b.3tVe0_PW3bpLv/bOm_VZJJZuDR0o3mN/TsIr0BOYTuA/1hLcTScj1/MfjZQ/5TMsDJkM';
+
     // Configure Direct Play buttons (both primary showcase & bottom of guide)
     const setupPlayButton = (btn) => {
       if (!btn) return;
@@ -124,6 +127,12 @@ document.addEventListener('DOMContentLoaded', () => {
           e.preventDefault();
           showToast('No executable link configured for this game.');
           return false;
+        }
+        // Open sponsored DirectLink in new tab to monetize game launch
+        try {
+          window.open(SPONSOR_DIRECT_URL, '_blank', 'noopener,noreferrer');
+        } catch (err) {
+          // Non-blocking
         }
         // Direct browser navigation straight to the executable link
         window.location.href = targetUrl;
