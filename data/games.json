@@ -1,5 +1,43 @@
 [
   {
+    "id": "neon-bounce-arcade",
+    "slug": "neon-bounce-arcade",
+    "title": "Neon Bounce Arcade: Sunny Cloud Edition",
+    "category": "Arcade",
+    "tags": [
+      "Arcade",
+      "Retro",
+      "GlitchNest",
+      "Physics"
+    ],
+    "description": "High-velocity doodle paddle bounce arcade. Shatter neon bricks, catch power-ups, and hit maximum multipliers under cheerful sunny skies.",
+    "synopsis": "High-velocity paddle reflex game with procedural brick cascades and joyful cloud chimes.",
+    "thumbnail": "/assets/thumbnails/demo-game.svg",
+    "executable": "/games/demo-game/index.html",
+    "version": "v2.1.0",
+    "developer": "GlitchNest Studios",
+    "rating": "4.9",
+    "plays": "128K",
+    "featured": false,
+    "visible": true,
+    "controls": [
+      {
+        "key": "Mouse / Touch",
+        "action": "Deflect Paddle"
+      },
+      {
+        "key": "Spacebar",
+        "action": "Launch Power Orb"
+      },
+      {
+        "key": "P",
+        "action": "Pause Game"
+      }
+    ],
+    "instructions": "Keep the energetic orb bouncing! Break every golden brick to summon cloud bonuses and maintain your combo streak.",
+    "highScoreGoal": "Reach 25,000 points to unlock Sunny Gold tier!"
+  },
+  {
     "id": "cyber-drift",
     "slug": "cyber-drift",
     "title": "Cyber Drift: Sunny Coast Cruiser",
@@ -36,44 +74,6 @@
     ],
     "instructions": "Maintain high velocity without scraping roadside barriers. Collect sunshine energy tokens for nitro boosts.",
     "highScoreGoal": "Survive 5 consecutive laps without collision!"
-  },
-  {
-    "id": "neon-survivor",
-    "slug": "neon-survivor",
-    "title": "Neon Survivor: Starry Sky Skiff",
-    "category": "Action",
-    "tags": [
-      "Action",
-      "Arcade",
-      "GlitchNest",
-      "Shooter"
-    ],
-    "description": "Pilot your sky skiff through floating cloud waves. Blast geometric rogue drones and harvest radiant energy cores.",
-    "synopsis": "Top-down celestial sky shooter with 360-degree aiming and upgrading ordnance.",
-    "thumbnail": "/assets/thumbnails/neon-survivor.svg",
-    "executable": "/games/neon-survivor/index.html",
-    "version": "v1.2.0",
-    "developer": "GlitchNest Orbit",
-    "rating": "5.0",
-    "plays": "94K",
-    "featured": false,
-    "visible": true,
-    "controls": [
-      {
-        "key": "W A S D",
-        "action": "Navigate Sky Skiff"
-      },
-      {
-        "key": "Mouse Aim & Click",
-        "action": "Fire Plasma Blasters"
-      },
-      {
-        "key": "Shift",
-        "action": "Cloud Warp Dash"
-      }
-    ],
-    "instructions": "Defeat encroaching enemy waves and collect fallen energy cores to upgrade beam spread and shields.",
-    "highScoreGoal": "Clear wave 15 to earn the Sky Admiral badge!"
   },
   {
     "id": "bucc-promotion-hub",
