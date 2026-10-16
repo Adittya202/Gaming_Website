@@ -114,8 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
       targetLinkDisplay.textContent = targetUrl || 'No link configured';
     }
 
-    // HilltopAds DirectLink URL (Zone #7524905)
-    const SPONSOR_DIRECT_URL = 'https://elementarywhole.com/b.3tVe0_PW3bpLv/bOm_VZJJZuDR0o3mN/TsIr0BOYTuA/1hLcTScj1/MfjZQ/5TMsDJkM';
+    // HilltopAds DirectLink URL
+    const SPONSOR_DIRECT_URL = 'https://sadpicture.com/d.mMFQzhdtGHNwvNZUGMUd/_enmT9Vu/ZwUZluk/PFT/cl1/MpjkQD5sOjT/cEtiN/zRUPykN/T-AZw/MWQF';
 
     // Configure Direct Play buttons (both primary showcase & bottom of guide)
     const setupPlayButton = (btn) => {
