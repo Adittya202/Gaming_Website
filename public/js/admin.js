@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
           hideAuthGateway();
           authErrorMsg.textContent = '';
           loadAdminCatalog();
+          initGitHubSync();
           showToast('Access Granted. Welcome, Admin.');
         } else {
           authErrorMsg.textContent = 'ACCESS DENIED: Invalid passcode key.';
@@ -75,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (data.success) {
         hideAuthGateway();
         loadAdminCatalog();
+        initGitHubSync();
       } else {
         sessionStorage.removeItem(TOKEN_KEY);
         localStorage.removeItem(TOKEN_KEY);
@@ -93,6 +95,157 @@ document.addEventListener('DOMContentLoaded', () => {
       showAuthGateway();
       showToast('Logged out of Admin Portal.');
     });
+  }
+
+  // =========================================================
+  // GitHub Cloud Sync & Vercel Persistence Engine
+  // =========================================================
+  const GH_TOKEN_KEY = 'glitchnest_gh_token';
+  let gitHubToken = localStorage.getItem(GH_TOKEN_KEY) || '';
+
+  const ghTokenInput = document.getElementById('ghTokenInput');
+  const toggleGhTokenBtn = document.getElementById('toggleGhTokenBtn');
+  const saveGhTokenBtn = document.getElementById('saveGhTokenBtn');
+  const testGhTokenBtn = document.getElementById('testGhTokenBtn');
+  const ghSyncBadge = document.getElementById('ghSyncBadge');
+  const ghSyncStatusBox = document.getElementById('ghSyncStatusBox');
+
+  function initGitHubSync() {
+    if (ghTokenInput && gitHubToken) {
+      ghTokenInput.value = gitHubToken;
+    }
+    checkPlatformAndSyncStatus();
+  }
+
+  if (toggleGhTokenBtn && ghTokenInput) {
+    toggleGhTokenBtn.addEventListener('click', () => {
+      const isPass = ghTokenInput.type === 'password';
+      ghTokenInput.type = isPass ? 'text' : 'password';
+      toggleGhTokenBtn.textContent = isPass ? '🔒' : '👁';
+    });
+  }
+
+  if (saveGhTokenBtn && ghTokenInput) {
+    saveGhTokenBtn.addEventListener('click', async () => {
+      const val = ghTokenInput.value.trim();
+      gitHubToken = val;
+      if (val) {
+        localStorage.setItem(GH_TOKEN_KEY, val);
+        showToast('GitHub token saved to browser!');
+      } else {
+        localStorage.removeItem(GH_TOKEN_KEY);
+        showToast('GitHub token cleared.');
+      }
+      await checkPlatformAndSyncStatus(true);
+    });
+  }
+
+  if (testGhTokenBtn) {
+    testGhTokenBtn.addEventListener('click', async () => {
+      const currentToken = ghTokenInput ? ghTokenInput.value.trim() : gitHubToken;
+      if (!currentToken) {
+        showToast('Please enter a GitHub token first.');
+        if (ghSyncStatusBox) {
+          ghSyncStatusBox.style.display = 'block';
+          ghSyncStatusBox.innerHTML = '<span style="color: #b91c1c;">⚠️ Please paste a Personal Access Token to test.</span>';
+        }
+        return;
+      }
+      testGitHubConnection(currentToken);
+    });
+  }
+
+  async function checkPlatformAndSyncStatus(showFeedback = false) {
+    try {
+      const res = await fetch('/api/admin/status');
+      const data = await res.json();
+
+      const tokenAvailable = Boolean(gitHubToken || data.hasEnvToken);
+
+      if (ghSyncBadge) {
+        if (tokenAvailable) {
+          ghSyncBadge.textContent = '🟢 GitHub Sync Active';
+          ghSyncBadge.className = 'ratio-badge-pill valid';
+        } else if (data.isVercel) {
+          ghSyncBadge.textContent = '⚠️ Token Required on Vercel';
+          ghSyncBadge.className = 'ratio-badge-pill invalid';
+        } else {
+          ghSyncBadge.textContent = '💻 Local Development Mode';
+          ghSyncBadge.className = 'ratio-badge-pill';
+        }
+      }
+
+      if (showFeedback && ghSyncStatusBox) {
+        ghSyncStatusBox.style.display = 'block';
+        if (tokenAvailable) {
+          testGitHubConnection(gitHubToken);
+        } else {
+          ghSyncStatusBox.innerHTML = '<span style="color: #d97706;">ℹ No token set. Local edits work on PC, but Vercel requires a token to persist changes.</span>';
+        }
+      }
+    } catch (err) {
+      console.warn('Status check warning:', err);
+    }
+  }
+
+  async function testGitHubConnection(token) {
+    if (ghSyncStatusBox) {
+      ghSyncStatusBox.style.display = 'block';
+      ghSyncStatusBox.innerHTML = '<span style="color: var(--sunshine-orange);">⏳ Testing GitHub connection to Adittya202/Gaming_Website...</span>';
+    }
+
+    try {
+      const res = await fetch('/api/admin/test-github', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-token': adminToken,
+          'x-github-token': token
+        }
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        if (ghSyncStatusBox) {
+          ghSyncStatusBox.innerHTML = `
+            <span style="color: #15803d; font-weight: 700;">
+              ✓ Connected successfully to GitHub repo: <u>${escapeHtml(data.repo)}</u>!
+              ${data.canPush ? ' (Write permissions verified ✓)' : ''}
+            </span>
+          `;
+        }
+        if (ghSyncBadge) {
+          ghSyncBadge.textContent = '🟢 Connected & Verified';
+          ghSyncBadge.className = 'ratio-badge-pill valid';
+        }
+        showToast('GitHub token verified successfully!');
+      } else {
+        if (ghSyncStatusBox) {
+          ghSyncStatusBox.innerHTML = `
+            <span style="color: #b91c1c; font-weight: 700;">
+              ✕ Connection failed: ${escapeHtml(data.error || 'Invalid token or unauthorized')}
+            </span>
+          `;
+        }
+        if (ghSyncBadge) {
+          ghSyncBadge.textContent = '✕ Token Error';
+          ghSyncBadge.className = 'ratio-badge-pill invalid';
+        }
+      }
+    } catch (err) {
+      if (ghSyncStatusBox) {
+        ghSyncStatusBox.innerHTML = `<span style="color: #b91c1c;">✕ Network error testing GitHub connection.</span>`;
+      }
+    }
+  }
+
+  function highlightGitHubSection() {
+    const card = document.getElementById('githubSyncCard');
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      card.style.boxShadow = '0 0 0 4px var(--sunshine-orange)';
+      setTimeout(() => { card.style.boxShadow = ''; }, 4500);
+    }
   }
 
   // Auto-generate slug from title
@@ -356,9 +509,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Upload to Express Backend
+  // Upload to Express Backend / GitHub Sync
   async function uploadProcessedThumbnail(dataUrl, originalFilename) {
-    showUploadStatus('☁ Uploading 16:9 thumbnail to server...', '');
+    showUploadStatus('☁ Uploading 16:9 thumbnail...', '');
 
     const gameSlug = gameSlugInput ? gameSlugInput.value.trim() : 'custom-game';
 
@@ -367,7 +520,8 @@ document.addEventListener('DOMContentLoaded', () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-admin-token': adminToken
+          'x-admin-token': adminToken,
+          'x-github-token': gitHubToken
         },
         body: JSON.stringify({
           imageBase64: dataUrl,
@@ -383,10 +537,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (gameThumbInput) gameThumbInput.value = data.url;
         if (thumbPreviewImg) thumbPreviewImg.src = data.url;
 
-        showUploadStatus(`✓ Uploaded successfully: ${data.url} (${(data.size / 1024).toFixed(1)} KB)`, 'success');
-        showToast('16:9 Thumbnail uploaded and saved!');
+        const sizeKb = (data.size / 1024).toFixed(1);
+        const syncNote = data.syncedToGitHub ? ' (Committed to GitHub ☁)' : '';
+        showUploadStatus(`✓ Uploaded successfully${syncNote}: ${data.url} (${sizeKb} KB)`, 'success');
+        showToast(`16:9 Thumbnail uploaded! ${syncNote}`);
       } else {
-        showUploadStatus(`Upload failed: ${data.error || 'Server rejected file'}`, 'error');
+        const errMsg = data.error || 'Server rejected file';
+        showUploadStatus(`Upload failed: ${errMsg}`, 'error');
+        showToast(`Thumbnail upload failed: ${errMsg}`);
+        if (errMsg.includes('read-only') || errMsg.includes('GitHub Token')) {
+          highlightGitHubSection();
+        }
       }
     } catch (err) {
       console.error(err);
@@ -439,7 +600,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!catalogTableBody) return;
     try {
       const res = await fetch('/api/games?all=true', {
-        headers: { 'x-admin-token': adminToken }
+        headers: {
+          'x-admin-token': adminToken,
+          'x-github-token': gitHubToken
+        }
       });
       if (!res.ok) throw new Error('Unauthorized');
 
@@ -566,18 +730,24 @@ document.addEventListener('DOMContentLoaded', () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'x-admin-token': adminToken
+            'x-admin-token': adminToken,
+            'x-github-token': gitHubToken
           },
           body: JSON.stringify(payload)
         });
 
         const data = await res.json();
         if (res.ok && data.success) {
-          showToast(`Game "${title}" successfully published to GlitchNest!`);
+          const syncNote = data.syncedToGitHub ? ' (Saved to GitHub ☁)' : '';
+          showToast(`Game "${title}" successfully published!${syncNote}`);
           deployForm.reset();
           loadAdminCatalog();
         } else {
-          showToast(`Deployment error: ${data.error || 'Failed to register game.'}`);
+          const errMsg = data.error || 'Failed to register game.';
+          showToast(`Deployment error: ${errMsg}`);
+          if (errMsg.includes('read-only') || errMsg.includes('GitHub Token')) {
+            highlightGitHubSection();
+          }
         }
       } catch (err) {
         showToast('Server communication failure during deployment.');
@@ -592,16 +762,21 @@ document.addEventListener('DOMContentLoaded', () => {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          'x-admin-token': adminToken
+          'x-admin-token': adminToken,
+          'x-github-token': gitHubToken
         },
         body: JSON.stringify({ visible: !currentVisible })
       });
       const data = await res.json();
-      if (data.success) {
+      if (res.ok && data.success) {
         showToast(`Game status updated to: ${!currentVisible ? 'PUBLISHED' : 'HIDDEN'}`);
         loadAdminCatalog();
       } else {
-        showToast('Failed to update status.');
+        const errMsg = data.error || 'Failed to update status.';
+        showToast(`Update error: ${errMsg}`);
+        if (errMsg.includes('read-only') || errMsg.includes('GitHub Token')) {
+          highlightGitHubSection();
+        }
       }
     } catch (e) {
       showToast('Network error updating visibility.');
@@ -618,15 +793,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const res = await fetch(`/api/games/${encodeURIComponent(id)}`, {
         method: 'DELETE',
         headers: {
-          'x-admin-token': adminToken
+          'x-admin-token': adminToken,
+          'x-github-token': gitHubToken
         }
       });
       const data = await res.json();
-      if (data.success) {
-        showToast(`Game "${title}" deleted successfully.`);
+      if (res.ok && data.success) {
+        const syncNote = data.syncedToGitHub ? ' (Committed to GitHub ☁)' : '';
+        showToast(`Game "${title}" deleted successfully.${syncNote}`);
         loadAdminCatalog();
       } else {
-        showToast(`Deletion failed: ${data.error || 'Unknown error'}`);
+        const errMsg = data.error || 'Unknown error';
+        showToast(`Deletion failed: ${errMsg}`);
+        if (errMsg.includes('read-only') || errMsg.includes('GitHub Token')) {
+          highlightGitHubSection();
+        }
       }
     } catch (e) {
       showToast('Network error during deletion.');

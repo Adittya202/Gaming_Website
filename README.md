@@ -108,8 +108,20 @@ In the Creator Desk (`admin.html`), game publishers can upload pictures directly
 | :--- | :--- | :--- | :--- |
 | `GET` | `/api/games` | Public | Returns all visible game entries (`?all=true` includes hidden) |
 | `GET` | `/api/games/:id` | Public | Returns single game details by slug or ID |
-| `POST` | `/api/admin/verify` | Public | Verifies passcode and issues admin session token |
-| `POST` | `/api/upload/thumbnail` | Protected (`x-admin-token`) | Uploads and saves a local 16:9 image to `/assets/thumbnails/` |
-| `POST` | `/api/games` | Protected (`x-admin-token`) | Adds a new game entry to `data/games.json` |
-| `PATCH`| `/api/games/:id` | Protected (`x-admin-token`) | Updates visibility or metadata of a game |
-| `DELETE`| `/api/games/:id`| Protected (`x-admin-token`) | Permanently deletes a game from `data/games.json` |
+| `POST` | `/api/admin/test-github` | Protected (`x-admin-token`) | Tests GitHub token write access to repository |
+| `GET`  | `/api/admin/status` | Public | Returns platform status (Vercel vs Local) and sync config |
+
+---
+
+## ☁️ Vercel Deployment & GitHub Cloud Sync (Live Persistence)
+
+Vercel functions run in a serverless environment where the file system is strictly read-only (`EROFS`). To make game management, deletions, and thumbnail uploads persist permanently without requiring an external database:
+
+1. **Auto GitHub Commits**: The backend uses GitHub's Contents REST API to commit game removals, edits, and thumbnail image files directly into the repository (`Adittya202/Gaming_Website`) on branch `main`.
+2. **Auto Vercel Redeployment**: Each commit pushed to GitHub automatically triggers a fresh deployment on Vercel within ~30 seconds.
+3. **Instant Live Cache**: All game catalog operations update in-memory storage immediately so players and administrators see updates with 0 latency.
+4. **Setup**:
+   - In `admin.html`, go to the **GITHUB CLOUD SYNC & VERCEL PERSISTENCE** section.
+   - Paste a GitHub Personal Access Token (PAT) with `repo` permissions and click **Save Token**.
+   - Or configure `GITHUB_TOKEN` in your Vercel Project Environment Variables.
+

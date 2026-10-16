@@ -107,6 +107,62 @@
       </button>
     </div>
 
+    <!-- GitHub Cloud Sync & Vercel Persistence Card -->
+    <section class="admin-card" id="githubSyncCard" style="margin-bottom: 2rem;" aria-label="GitHub Cloud Sync Configuration">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+        <h2 class="admin-card-title" style="margin-bottom: 0;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/>
+          </svg>
+          GITHUB CLOUD SYNC &amp; VERCEL PERSISTENCE ☁
+        </h2>
+        <span class="ratio-badge-pill" id="ghSyncBadge">Checking sync status...</span>
+      </div>
+
+      <p style="font-family: var(--font-hand); font-size: 1.15rem; color: var(--ink-secondary); margin-bottom: 1.25rem;">
+        On Vercel, game deletions, registrations, and thumbnail uploads are committed directly to your GitHub repository (<strong>Adittya202/Gaming_Website</strong>), which triggers an automatic live deployment on Vercel.
+      </p>
+
+      <div style="background: rgba(255, 209, 102, 0.18); border: 2px dashed var(--sunshine-yellow); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.25rem;">
+        <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+          <span style="font-size: 1.4rem;">💡</span>
+          <div style="font-family: var(--font-hand); font-size: 1.05rem; color: var(--ink-main); line-height: 1.45;">
+            <strong>Quick Setup (Takes 30 seconds):</strong><br>
+            1. Open <a href="https://github.com/settings/tokens/new?scopes=repo&description=GlitchNest+Gaming+Portal" target="_blank" rel="noopener noreferrer" style="color: var(--sunshine-orange); font-weight: 700; text-decoration: underline;">GitHub Token Generator</a>.<br>
+            2. Choose expiration, ensure the <strong>repo</strong> checkbox is checked, and click <strong>Generate token</strong>.<br>
+            3. Paste the token below. It is stored securely in your browser's private local storage!
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+        <div style="flex: 1; min-width: 280px; position: relative;">
+          <input 
+            type="password" 
+            id="ghTokenInput" 
+            class="form-input" 
+            placeholder="Paste your GitHub Personal Access Token (ghp_...)" 
+            autocomplete="off"
+            style="padding-right: 50px; font-family: var(--font-mono); font-size: 0.95rem;">
+          <button 
+            type="button" 
+            id="toggleGhTokenBtn" 
+            style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--ink-muted); font-size: 1.1rem; padding: 4px;" 
+            title="Toggle Token Visibility">
+            👁
+          </button>
+        </div>
+        <button type="button" id="saveGhTokenBtn" class="action-btn" style="padding: 0.65rem 1.25rem; font-size: 1rem;">
+          SAVE TOKEN 💾
+        </button>
+        <button type="button" id="testGhTokenBtn" class="action-btn action-btn-secondary" style="padding: 0.65rem 1.25rem; font-size: 1rem;">
+          TEST CONNECTION ⚡
+        </button>
+      </div>
+
+      <div id="ghSyncStatusBox" style="display: none; margin-top: 0.85rem; font-family: var(--font-hand); font-size: 1.1rem;"></div>
+    </section>
+
     <div class="admin-grid-layout">
       
       <!-- Column 1: Game Deployment Form -->
