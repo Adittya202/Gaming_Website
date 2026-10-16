@@ -182,14 +182,90 @@
               style="font-family: var(--font-hand); font-size: 1.05rem;"></textarea>
           </div>
 
-          <div class="form-group">
-            <label class="form-label" for="gameThumbInput">16:9 Thumbnail Path or URL</label>
-            <input 
-              type="text" 
-              id="gameThumbInput" 
-              class="form-input" 
-              placeholder="/assets/thumbnails/custom-game.svg or https://..." 
-              value="/assets/thumbnails/default.svg">
+          <!-- Thumbnail Studio with Local PC Upload and Strict 16:9 Ratio Enforcement -->
+          <div class="form-group thumbnail-upload-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+              <label class="form-label" style="margin-bottom: 0;">Game Thumbnail Image *</label>
+              <span class="ratio-badge-pill" id="ratioStatusBadge">Strict 16:9 Enforced</span>
+            </div>
+
+            <!-- Mode Switcher Tabs -->
+            <div class="thumb-mode-tabs">
+              <button type="button" class="thumb-tab-btn active" id="tabUploadLocal">
+                📁 Upload from Local PC
+              </button>
+              <button type="button" class="thumb-tab-btn" id="tabEnterUrl">
+                🔗 Enter Path / URL
+              </button>
+            </div>
+
+            <!-- Local PC File Upload Dropzone -->
+            <div id="localUploadSection" class="upload-dropzone-box">
+              <input 
+                type="file" 
+                id="thumbFileInput" 
+                accept="image/png, image/jpeg, image/jpg, image/webp, image/svg+xml" 
+                style="display: none;">
+              
+              <div class="dropzone-inner" id="dropzoneClickArea">
+                <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <div class="dropzone-text">
+                  <span>Click to Browse from PC</span> or Drag & Drop File
+                </div>
+                <div class="dropzone-subtext">
+                  PNG, JPG, WebP, SVG &bull; <strong>Strict 16:9 Aspect Ratio</strong> (e.g. 1920×1080, 1280×720)
+                </div>
+              </div>
+            </div>
+
+            <!-- Custom Path / URL Input (Alternative mode) -->
+            <div id="urlInputSection" style="display: none; margin-top: 0.65rem;">
+              <input 
+                type="text" 
+                id="gameThumbInput" 
+                class="form-input" 
+                placeholder="/assets/thumbnails/custom-game.svg or https://..." 
+                value="/assets/thumbnails/default.svg">
+            </div>
+
+            <!-- Live 16:9 Thumbnail Preview & Auto-Cropper -->
+            <div class="thumb-preview-card" id="thumbPreviewCard">
+              <div class="thumb-preview-header">
+                <span style="font-family: var(--font-hand); font-weight: 700; font-size: 1rem;">
+                  16:9 Viewport Preview:
+                </span>
+                <span id="previewDimsBadge" class="ratio-badge-pill" style="font-size: 0.85rem;">
+                  1280 × 720 (16:9)
+                </span>
+              </div>
+              
+              <div class="preview-stage-16-9">
+                <img id="thumbPreviewImg" src="/assets/thumbnails/default.svg" alt="16:9 Thumbnail Preview">
+                <div class="preview-ratio-watermark">16:9 RATIO</div>
+              </div>
+
+              <!-- Mismatch Notice & 16:9 Cropper Buttons -->
+              <div id="cropNoticeBox" class="crop-notice-box" style="display: none;">
+                <div id="cropWarningText" style="font-weight: 700;">
+                  ⚠️ Image aspect ratio is not 16:9. Please crop or fit:
+                </div>
+                <div class="crop-actions-row">
+                  <button type="button" id="autoCrop169Btn" class="crop-tool-btn">
+                    ✂ Auto-Crop to 16:9 (Center)
+                  </button>
+                  <button type="button" id="letterbox169Btn" class="crop-tool-btn secondary">
+                    🖼 Fit to 16:9 (Letterbox)
+                  </button>
+                </div>
+              </div>
+
+              <!-- Live Upload Feedback Status -->
+              <div id="uploadStatusMsg" class="upload-status-msg" style="display: none;"></div>
+            </div>
           </div>
 
           <div class="form-group">

@@ -89,3 +89,27 @@ GlitchNest includes 3 self-contained, high-performance HTML5 Canvas games:
 1. **Neon Bounce Arcade: Sunny Cloud Edition** (`/games/demo-game/index.html`): Cheerful cloud block-breaking game with multi-ball powerups, Web Audio synthesizers, and combo multipliers.
 2. **Cyber Drift: Sunny Coast Cruiser** (`/games/cyber-drift/index.html`): Highway cruiser with sunshine boost, traffic avoidance, and energy tokens.
 3. **Neon Survivor: Starry Sky Skiff** (`/games/neon-survivor/index.html`): 360-degree vector arena combat with twin-stick controls and goofy alien blobs.
+
+---
+
+## 🖼️ Thumbnail Studio & Strict 16:9 Aspect Ratio Enforcement
+
+In the Creator Desk (`admin.html`), game publishers can upload pictures directly from their local PC folder:
+- **Local PC Upload**: Drag-and-drop or browse local images (PNG, JPG, WebP, SVG).
+- **Strict 16:9 Ratio Verification**: Instant aspect ratio analysis (e.g. `1280×720`, `1920×1080`).
+- **Auto-Cropper Tools**: If an uploaded picture is not 16:9, the studio provides one-click `✂ Auto-Crop to 16:9 (Center)` and `🖼 Fit to 16:9 (Letterbox)` tools powered by HTML5 Canvas.
+- **Instant Cloud Save**: Processed thumbnails are automatically uploaded to `/assets/thumbnails/` and linked to the game deployment record.
+
+---
+
+## 🔌 REST API Endpoints
+
+| Method | Endpoint | Protection | Description |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/games` | Public | Returns all visible game entries (`?all=true` includes hidden) |
+| `GET` | `/api/games/:id` | Public | Returns single game details by slug or ID |
+| `POST` | `/api/admin/verify` | Public | Verifies passcode and issues admin session token |
+| `POST` | `/api/upload/thumbnail` | Protected (`x-admin-token`) | Uploads and saves a local 16:9 image to `/assets/thumbnails/` |
+| `POST` | `/api/games` | Protected (`x-admin-token`) | Adds a new game entry to `data/games.json` |
+| `PATCH`| `/api/games/:id` | Protected (`x-admin-token`) | Updates visibility or metadata of a game |
+| `DELETE`| `/api/games/:id`| Protected (`x-admin-token`) | Permanently deletes a game from `data/games.json` |

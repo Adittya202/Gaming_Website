@@ -7,9 +7,9 @@ const PORT = process.env.PORT || 3000;
 const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE || 'glitchnest-2026';
 const DATA_FILE = path.join(__dirname, 'data', 'games.json');
 
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Middleware with 25mb payload support for local thumbnail uploads
+app.use(express.json({ limit: '25mb' }));
+app.use(express.urlencoded({ extended: true, limit: '25mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Helper to safely read games
@@ -60,6 +60,57 @@ app.post('/api/admin/verify', (req, res) => {
     return res.json({ success: true, token: ADMIN_PASSCODE });
   }
   return res.status(401).json({ success: false, message: 'Invalid passcode' });
+});
+
+// POST /api/upload/thumbnail — Protected endpoint to upload a local picture as 16:9 thumbnail
+app.post('/api/upload/thumbnail', requireAdmin, (req, res) => {
+  try {
+    const { imageBase64, filename, slug } = req.body;
+    if (!imageBase64) {
+      return res.status(400).json({ error: 'No image data received.' });
+    }
+
+    // Match data URI scheme e.g. data:image/png;base64,...
+    const matches = imageBase64.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+    if (!matches || matches.length !== 3) {
+      return res.status(400).json({ error: 'Invalid image format. Expected data URI base64 string.' });
+    }
+
+    const mimeType = matches[1].toLowerCase();
+    const base64Data = matches[2];
+    const buffer = Buffer.from(base64Data, 'base64');
+
+    // Extension resolution
+    let ext = 'png';
+    if (mimeType.includes('jpeg') || mimeType.includes('jpg')) ext = 'jpg';
+    else if (mimeType.includes('webp')) ext = 'webp';
+    else if (mimeType.includes('svg')) ext = 'svg';
+
+    const cleanSlug = (slug || 'game-thumb').toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-|-$/g, '') || 'thumb';
+    const timestamp = Date.now();
+    const finalFilename = `${cleanSlug}-${timestamp}.${ext}`;
+    const uploadDir = path.join(__dirname, 'public', 'assets', 'thumbnails');
+
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+
+    const filePath = path.join(uploadDir, finalFilename);
+    fs.writeFileSync(filePath, buffer);
+
+    const publicUrl = `/assets/thumbnails/${finalFilename}`;
+    console.log(`📸 Thumbnail uploaded: ${publicUrl} (${buffer.length} bytes)`);
+
+    return res.json({
+      success: true,
+      url: publicUrl,
+      filename: finalFilename,
+      size: buffer.length
+    });
+  } catch (err) {
+    console.error('Error handling thumbnail upload:', err);
+    return res.status(500).json({ error: 'Failed to save uploaded thumbnail file.' });
+  }
 });
 
 // GET /api/games — Fetch game catalog

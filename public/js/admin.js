@@ -113,6 +113,294 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // =========================================================
+  // Thumbnail Studio & Strict 16:9 Aspect Ratio Enforcement
+  // =========================================================
+  const tabUploadLocal = document.getElementById('tabUploadLocal');
+  const tabEnterUrl = document.getElementById('tabEnterUrl');
+  const localUploadSection = document.getElementById('localUploadSection');
+  const urlInputSection = document.getElementById('urlInputSection');
+  const thumbFileInput = document.getElementById('thumbFileInput');
+  const dropzoneClickArea = document.getElementById('dropzoneClickArea');
+  const thumbPreviewImg = document.getElementById('thumbPreviewImg');
+  const ratioStatusBadge = document.getElementById('ratioStatusBadge');
+  const previewDimsBadge = document.getElementById('previewDimsBadge');
+  const cropNoticeBox = document.getElementById('cropNoticeBox');
+  const cropWarningText = document.getElementById('cropWarningText');
+  const autoCrop169Btn = document.getElementById('autoCrop169Btn');
+  const letterbox169Btn = document.getElementById('letterbox169Btn');
+  const uploadStatusMsg = document.getElementById('uploadStatusMsg');
+  const gameThumbInput = document.getElementById('gameThumbInput');
+
+  let currentLoadedImage = null;
+  let currentLoadedFilename = 'thumbnail.png';
+
+  // Tab switching
+  if (tabUploadLocal && tabEnterUrl) {
+    tabUploadLocal.addEventListener('click', () => {
+      tabUploadLocal.classList.add('active');
+      tabEnterUrl.classList.remove('active');
+      if (localUploadSection) localUploadSection.style.display = 'block';
+      if (urlInputSection) urlInputSection.style.display = 'none';
+    });
+
+    tabEnterUrl.addEventListener('click', () => {
+      tabEnterUrl.classList.add('active');
+      tabUploadLocal.classList.remove('active');
+      if (localUploadSection) localUploadSection.style.display = 'none';
+      if (urlInputSection) urlInputSection.style.display = 'block';
+    });
+  }
+
+  // Live URL input change syncs preview
+  if (gameThumbInput) {
+    gameThumbInput.addEventListener('input', () => {
+      const url = gameThumbInput.value.trim();
+      if (url) {
+        if (thumbPreviewImg) thumbPreviewImg.src = url;
+        if (ratioStatusBadge) {
+          ratioStatusBadge.textContent = 'Custom Path Linked';
+          ratioStatusBadge.className = 'ratio-badge-pill';
+        }
+        if (cropNoticeBox) cropNoticeBox.style.display = 'none';
+      }
+    });
+  }
+
+  // Trigger file browsing
+  if (dropzoneClickArea && thumbFileInput) {
+    dropzoneClickArea.addEventListener('click', () => {
+      thumbFileInput.click();
+    });
+
+    thumbFileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files[0]) {
+        processSelectedLocalFile(e.target.files[0]);
+      }
+    });
+  }
+
+  // Drag and drop handlers
+  if (localUploadSection) {
+    ['dragenter', 'dragover'].forEach(name => {
+      localUploadSection.addEventListener(name, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        localUploadSection.classList.add('drag-over');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(name => {
+      localUploadSection.addEventListener(name, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        localUploadSection.classList.remove('drag-over');
+      });
+    });
+
+    localUploadSection.addEventListener('drop', (e) => {
+      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) {
+        processSelectedLocalFile(e.dataTransfer.files[0]);
+      }
+    });
+  }
+
+  // Process Local Image File & Enforce 16:9 Ratio
+  function processSelectedLocalFile(file) {
+    if (!file.type.startsWith('image/')) {
+      showUploadStatus('Error: Please select a valid picture file (PNG, JPG, WebP).', 'error');
+      return;
+    }
+
+    currentLoadedFilename = file.name;
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const rawDataUrl = e.target.result;
+      const img = new Image();
+
+      img.onload = () => {
+        currentLoadedImage = img;
+        const width = img.naturalWidth;
+        const height = img.naturalHeight;
+        const ratio = width / height;
+        const targetRatio = 16 / 9; // ~1.77778
+
+        if (previewDimsBadge) previewDimsBadge.textContent = `${width} × ${height}`;
+
+        // Check if ratio matches 16:9 within 3% tolerance
+        const isRatio16x9 = Math.abs(ratio - targetRatio) <= 0.05;
+
+        if (isRatio16x9) {
+          // Exact or near-exact 16:9 picture!
+          if (ratioStatusBadge) {
+            ratioStatusBadge.textContent = `✅ Valid 16:9 Ratio`;
+            ratioStatusBadge.className = 'ratio-badge-pill valid';
+          }
+          if (cropNoticeBox) cropNoticeBox.style.display = 'none';
+
+          // Upload image to server
+          uploadProcessedThumbnail(rawDataUrl, file.name);
+        } else {
+          // Ratio mismatch: enforce 16:9 with friendly auto-crop tools
+          if (ratioStatusBadge) {
+            ratioStatusBadge.textContent = `⚠️ Ratio: ${ratio.toFixed(2)}:1 (Needs 16:9)`;
+            ratioStatusBadge.className = 'ratio-badge-pill invalid';
+          }
+          
+          if (cropNoticeBox) cropNoticeBox.style.display = 'block';
+          if (cropWarningText) {
+            cropWarningText.innerHTML = `⚠️ Selected picture is <strong>${width}×${height} (${ratio.toFixed(2)}:1)</strong>.<br>GlitchNest requires strict <strong>16:9 ratio</strong> cards. Choose an option:`;
+          }
+          
+          // Show raw image preview
+          if (thumbPreviewImg) thumbPreviewImg.src = rawDataUrl;
+          showUploadStatus('Picture loaded. Please click an auto-crop option below to enforce 16:9 ratio before uploading.', 'error');
+        }
+      };
+
+      img.onerror = () => {
+        showUploadStatus('Failed to decode image file.', 'error');
+      };
+
+      img.src = rawDataUrl;
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+  // 16:9 Center Crop Tool
+  if (autoCrop169Btn) {
+    autoCrop169Btn.addEventListener('click', () => {
+      if (!currentLoadedImage) return;
+
+      const img = currentLoadedImage;
+      const targetW = 1280;
+      const targetH = 720;
+      const targetRatio = 16 / 9;
+      const imgRatio = img.naturalWidth / img.naturalHeight;
+
+      let cropX = 0;
+      let cropY = 0;
+      let cropW = img.naturalWidth;
+      let cropH = img.naturalHeight;
+
+      if (imgRatio > targetRatio) {
+        // Image is wider than 16:9 -> crop left & right
+        cropW = img.naturalHeight * targetRatio;
+        cropX = (img.naturalWidth - cropW) / 2;
+      } else {
+        // Image is taller than 16:9 -> crop top & bottom
+        cropH = img.naturalWidth / targetRatio;
+        cropY = (img.naturalHeight - cropH) / 2;
+      }
+
+      const canvas = document.createElement('canvas');
+      canvas.width = targetW;
+      canvas.height = targetH;
+      const ctx = canvas.getContext('2d');
+
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(img, cropX, cropY, cropW, cropH, 0, 0, targetW, targetH);
+
+      const croppedDataUrl = canvas.toDataURL('image/png', 0.95);
+      if (previewDimsBadge) previewDimsBadge.textContent = '1280 × 720 (16:9 Cropped)';
+      if (ratioStatusBadge) {
+        ratioStatusBadge.textContent = '✅ 16:9 Auto-Cropped';
+        ratioStatusBadge.className = 'ratio-badge-pill valid';
+      }
+      if (cropNoticeBox) cropNoticeBox.style.display = 'none';
+
+      uploadProcessedThumbnail(croppedDataUrl, currentLoadedFilename);
+    });
+  }
+
+  // 16:9 Letterbox / Fit Tool
+  if (letterbox169Btn) {
+    letterbox169Btn.addEventListener('click', () => {
+      if (!currentLoadedImage) return;
+
+      const img = currentLoadedImage;
+      const targetW = 1280;
+      const targetH = 720;
+
+      const canvas = document.createElement('canvas');
+      canvas.width = targetW;
+      canvas.height = targetH;
+      const ctx = canvas.getContext('2d');
+
+      // Soft pastel paper background
+      ctx.fillStyle = '#f8fbff';
+      ctx.fillRect(0, 0, targetW, targetH);
+
+      const scale = Math.min(targetW / img.naturalWidth, targetH / img.naturalHeight);
+      const drawW = img.naturalWidth * scale;
+      const drawH = img.naturalHeight * scale;
+      const drawX = (targetW - drawW) / 2;
+      const drawY = (targetH - drawH) / 2;
+
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(img, drawX, drawY, drawW, drawH);
+
+      const letterboxedDataUrl = canvas.toDataURL('image/png', 0.95);
+      if (previewDimsBadge) previewDimsBadge.textContent = '1280 × 720 (16:9 Fitted)';
+      if (ratioStatusBadge) {
+        ratioStatusBadge.textContent = '✅ 16:9 Fitted';
+        ratioStatusBadge.className = 'ratio-badge-pill valid';
+      }
+      if (cropNoticeBox) cropNoticeBox.style.display = 'none';
+
+      uploadProcessedThumbnail(letterboxedDataUrl, currentLoadedFilename);
+    });
+  }
+
+  // Upload to Express Backend
+  async function uploadProcessedThumbnail(dataUrl, originalFilename) {
+    showUploadStatus('☁ Uploading 16:9 thumbnail to server...', '');
+
+    const gameSlug = gameSlugInput ? gameSlugInput.value.trim() : 'custom-game';
+
+    try {
+      const res = await fetch('/api/upload/thumbnail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-token': adminToken
+        },
+        body: JSON.stringify({
+          imageBase64: dataUrl,
+          filename: originalFilename,
+          slug: gameSlug
+        })
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        // Update input field and preview
+        if (gameThumbInput) gameThumbInput.value = data.url;
+        if (thumbPreviewImg) thumbPreviewImg.src = data.url;
+
+        showUploadStatus(`✓ Uploaded successfully: ${data.url} (${(data.size / 1024).toFixed(1)} KB)`, 'success');
+        showToast('16:9 Thumbnail uploaded and saved!');
+      } else {
+        showUploadStatus(`Upload failed: ${data.error || 'Server rejected file'}`, 'error');
+      }
+    } catch (err) {
+      console.error(err);
+      showUploadStatus('Network error during thumbnail upload.', 'error');
+    }
+  }
+
+  function showUploadStatus(msg, type) {
+    if (!uploadStatusMsg) return;
+    uploadStatusMsg.style.display = 'block';
+    uploadStatusMsg.textContent = msg;
+    uploadStatusMsg.className = `upload-status-msg ${type}`;
+  }
+
   // Quick Preset / Demo Fill Button for rapid testing
   if (presetBtn) {
     presetBtn.addEventListener('click', () => {
