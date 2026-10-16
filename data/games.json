@@ -112,5 +112,42 @@
     ],
     "instructions": "Defeat encroaching enemy waves and collect fallen energy cores to upgrade beam spread and shields.",
     "highScoreGoal": "Clear wave 15 to earn the Sky Admiral badge!"
+  },
+  {
+    "id": "bucc-promotion-hub",
+    "slug": "bucc-promotion-hub",
+    "title": "BUCC Promotion Hub",
+    "category": "Action",
+    "tags": [
+      "Action",
+      "Arcade",
+      "GlitchNest"
+    ],
+    "description": "Classic Shooting action game, based on the idea of the promotion of BUCC",
+    "synopsis": "Classic Shooting action game, based on the idea of the promotion of BUCC",
+    "thumbnail": "https://raw.githubusercontent.com/Adittya202/Gaming_Website/main/public/assets/thumbnails/bucc-promotion-hub-1792150586766.png",
+    "executable": "https://buccpromotiongame.vercel.app",
+    "version": "v1.0.0",
+    "developer": "Adittya Dey",
+    "rating": "5.0",
+    "plays": "1",
+    "featured": false,
+    "visible": true,
+    "controls": [
+      {
+        "key": "Space jump",
+        "action": "Space jump"
+      },
+      {
+        "key": "Right click sheild",
+        "action": "Right click sheild"
+      },
+      {
+        "key": "left click shoot",
+        "action": "left click shoot"
+      }
+    ],
+    "instructions": "Use controls to play and conquer the high score.",
+    "highScoreGoal": "Aim for the GlitchNest leaderboard top spot!"
   }
 ]
