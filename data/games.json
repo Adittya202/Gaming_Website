@@ -1,41 +1,41 @@
 [
   {
-    "id": "neon-survivor",
-    "slug": "neon-survivor",
-    "title": "Neon Survivor: Starry Sky Skiff",
+    "id": "cyber-drift",
+    "slug": "cyber-drift",
+    "title": "Cyber Drift: Sunny Coast Cruiser",
     "category": "Action",
     "tags": [
       "Action",
       "Arcade",
       "GlitchNest",
-      "Shooter"
+      "Racing"
     ],
-    "description": "Pilot your sky skiff through floating cloud waves. Blast geometric rogue drones and harvest radiant energy cores.",
-    "synopsis": "Top-down celestial sky shooter with 360-degree aiming and upgrading ordnance.",
-    "thumbnail": "/assets/thumbnails/neon-survivor.svg",
-    "executable": "/games/neon-survivor/index.html",
-    "version": "v1.2.0",
-    "developer": "GlitchNest Orbit",
-    "rating": "5.0",
-    "plays": "94K",
+    "description": "Drift along the sunny coastal highway. Dodge traffic barriers and draft behind high-speed hovercrafts.",
+    "synopsis": "Fast-paced pseudo-3D highway drift racing with sunshine scenery and electronic synth beats.",
+    "thumbnail": "/assets/thumbnails/cyber-drift.svg",
+    "executable": "/games/cyber-drift/index.html",
+    "version": "v1.4.0",
+    "developer": "GlitchNest Speedworks",
+    "rating": "4.8",
+    "plays": "85K",
     "featured": false,
     "visible": true,
     "controls": [
       {
-        "key": "W A S D",
-        "action": "Navigate Sky Skiff"
+        "key": "A / D or Left / Right",
+        "action": "Steer Hovercraft"
       },
       {
-        "key": "Mouse Aim & Click",
-        "action": "Fire Plasma Blasters"
+        "key": "W or Up",
+        "action": "Accelerate Nitro"
       },
       {
-        "key": "Shift",
-        "action": "Cloud Warp Dash"
+        "key": "Spacebar",
+        "action": "Handbrake Drift"
       }
     ],
-    "instructions": "Defeat encroaching enemy waves and collect fallen energy cores to upgrade beam spread and shields.",
-    "highScoreGoal": "Clear wave 15 to earn the Sky Admiral badge!"
+    "instructions": "Maintain high velocity without scraping roadside barriers. Collect sunshine energy tokens for nitro boosts.",
+    "highScoreGoal": "Survive 5 consecutive laps without collision!"
   },
   {
     "id": "bucc-promotion-hub",
