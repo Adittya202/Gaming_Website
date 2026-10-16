@@ -200,8 +200,13 @@ function requireAdmin(req, res, next) {
 }
 
 /* =========================================================
-   API Endpoints
+   API Endpoints & Verification
    ========================================================= */
+
+// Domain Ownership Verification
+app.get('/79d74165874b669fdcb9.txt', (req, res) => {
+  res.type('text/plain').send('70e7d3ac2dda38b34c03');
+});
 
 // Verify Admin Token
 app.post('/api/admin/verify', (req, res) => {
