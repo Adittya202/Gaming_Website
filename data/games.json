@@ -1,43 +1,5 @@
 [
   {
-    "id": "neon-survivor",
-    "slug": "neon-survivor",
-    "title": "Neon Survivor: Starry Sky Skiff",
-    "category": "Action",
-    "tags": [
-      "Action",
-      "Arcade",
-      "GlitchNest",
-      "Shooter"
-    ],
-    "description": "Pilot your sky skiff through floating cloud waves. Blast geometric rogue drones and harvest radiant energy cores.",
-    "synopsis": "Top-down celestial sky shooter with 360-degree aiming and upgrading ordnance.",
-    "thumbnail": "/assets/thumbnails/neon-survivor.svg",
-    "executable": "/games/neon-survivor/index.html",
-    "version": "v1.2.0",
-    "developer": "GlitchNest Orbit",
-    "rating": "5.0",
-    "plays": "94K",
-    "featured": false,
-    "visible": true,
-    "controls": [
-      {
-        "key": "W A S D",
-        "action": "Navigate Sky Skiff"
-      },
-      {
-        "key": "Mouse Aim & Click",
-        "action": "Fire Plasma Blasters"
-      },
-      {
-        "key": "Shift",
-        "action": "Cloud Warp Dash"
-      }
-    ],
-    "instructions": "Defeat encroaching enemy waves and collect fallen energy cores to upgrade beam spread and shields.",
-    "highScoreGoal": "Clear wave 15 to earn the Sky Admiral badge!"
-  },
-  {
     "id": "bucc-promotion-hub",
     "slug": "bucc-promotion-hub",
     "title": "BUCC Promotion Hub",
