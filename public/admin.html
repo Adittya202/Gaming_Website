@@ -269,14 +269,17 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="gameExecInput">Executable Path or Embed URL *</label>
+            <label class="form-label" for="gameExecInput">Game Executable Path or Link *</label>
             <input 
               type="text" 
               id="gameExecInput" 
               class="form-input" 
-              placeholder="/games/[slug]/index.html" 
+              placeholder="e.g., https://buccpromotiongame.vercel.app or /games/mygame/index.html" 
               style="font-family: var(--font-mono);"
               required>
+            <small style="display: block; margin-top: 0.35rem; font-family: var(--font-hand); font-size: 1.05rem; color: var(--ink-muted);">
+              ⚡ When players click "PLAY GAME NOW" on the details page, they will be taken directly to this link (no virtual screen / iframe).
+            </small>
           </div>
 
           <div class="form-group">

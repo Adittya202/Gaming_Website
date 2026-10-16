@@ -1,21 +1,22 @@
 /**
- * GlitchNest Portal - Game Runner & Monetization Hub (player.js)
- * Fullscreen API management, dynamic iframe loader, control guide generator,
- * AdSense hooks, and recommendations engine.
+ * GlitchNest Portal - Game Details & Direct Launch Engine (player.js)
+ * Loads game details, 16:9 artwork poster, instructions, AdSense hooks,
+ * and sets up direct navigation to the game's executable link upon clicking Play.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   // DOM Elements
-  const stageContainer = document.getElementById('stageContainer');
-  const gameFrame = document.getElementById('gameFrame');
-  const stageLoader = document.getElementById('stageLoader');
-  const fullscreenBtn = document.getElementById('fullscreenBtn');
-  const restartBtn = document.getElementById('restartBtn');
+  const gamePosterImg = document.getElementById('gamePosterImg');
+  const directPlayBtn = document.getElementById('directPlayBtn');
+  const directPlayBtnSecondary = document.getElementById('directPlayBtnSecondary');
+  const targetLinkDisplay = document.getElementById('targetLinkDisplay');
+  const sidebarDevCredit = document.getElementById('sidebarDevCredit');
   const shareBtn = document.getElementById('shareBtn');
   const favoriteBtn = document.getElementById('favoriteBtn');
   
   // Metadata fields
   const gameTitleEl = document.getElementById('gameTitle');
+  const gameSynopsisEl = document.getElementById('gameSynopsis');
   const gameVersionBadge = document.getElementById('gameVersionBadge');
   const gameCategoryBadge = document.getElementById('gameCategoryBadge');
   const gameDevCredit = document.getElementById('gameDevCredit');
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const gameInstructionsEl = document.getElementById('gameInstructions');
   const goalBannerEl = document.getElementById('goalBanner');
   const recommendedGridEl = document.getElementById('recommendedGrid');
+  const showcaseContainer = document.getElementById('showcaseContainer');
 
   // Extract ID from URL (?id=...)
   const urlParams = new URLSearchParams(window.location.search);
@@ -33,11 +35,43 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentGame = null;
 
   if (!gameId) {
-    showErrorState('NO GAME ID SPECIFIED', 'Please select a game from the GlitchNest arcade catalog.');
+    showErrorState('NO GAME SELECTED', 'Please choose a game from the GlitchNest catalog.');
     return;
   }
 
-  // Load Game Details
+  /**
+   * Robust Executable Link Resolver
+   * Handles absolute URLs, relative game paths, domain URLs without protocol, etc.
+   */
+  function resolveExecutableUrl(raw) {
+    if (!raw) return '';
+    let url = String(raw).trim();
+    if (!url) return '';
+
+    // If starts with protocol like http://, https://, file://, etc.
+    if (/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//i.test(url)) {
+      return url;
+    }
+
+    // If relative path like /games/... or ./... or ../...
+    if (url.startsWith('/') || url.startsWith('./') || url.startsWith('../')) {
+      return url;
+    }
+
+    // If starts with 'games/'
+    if (url.startsWith('games/')) {
+      return '/' + url;
+    }
+
+    // If domain-like format (e.g., buccpromotiongame.vercel.app, itch.io, poki.com)
+    if (/^[a-zA-Z0-9][a-zA-Z0-9-]*\.[a-zA-Z]{2,}/.test(url)) {
+      return 'https://' + url;
+    }
+
+    return url;
+  }
+
+  // Load Game Details from REST API
   async function loadGame() {
     try {
       const res = await fetch(`/api/games/${encodeURIComponent(gameId)}`);
@@ -47,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       currentGame = await res.json();
       renderGameDetails(currentGame);
-      loadGameStage(currentGame);
       loadRecommendations(currentGame.id);
       checkFavoriteStatus(currentGame.id);
     } catch (err) {
@@ -56,16 +89,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Inject metadata into DOM
+  // Populate Details into DOM & Configure Direct Play Link
   function renderGameDetails(game) {
     document.title = `${game.title} - GlitchNest Arcade`;
 
+    if (gamePosterImg) {
+      gamePosterImg.src = game.thumbnail || '/assets/thumbnails/default.svg';
+      gamePosterImg.alt = `${game.title} Thumbnail Artwork`;
+    }
+
     if (gameTitleEl) gameTitleEl.textContent = game.title;
+    if (gameSynopsisEl) gameSynopsisEl.textContent = game.synopsis || game.description || 'Enjoy this game directly on GlitchNest.';
     if (gameVersionBadge) gameVersionBadge.textContent = game.version || 'v1.0';
     if (gameCategoryBadge) gameCategoryBadge.textContent = game.category || 'Arcade';
     if (gameDevCredit) gameDevCredit.textContent = game.developer || 'GlitchNest Studios';
-    if (gameRatingEl) gameRatingEl.textContent = `★ ${game.rating || '4.9'}`;
+    if (sidebarDevCredit) sidebarDevCredit.textContent = game.developer || 'GlitchNest';
+    if (gameRatingEl) gameRatingEl.textContent = `★ ${game.rating || '5.0'} RATING`;
     if (gamePlaysEl) gamePlaysEl.textContent = `${game.plays || '10K'} PLAYS`;
+
+    // Resolve the direct executable target link
+    const targetUrl = resolveExecutableUrl(game.executable);
+
+    if (targetLinkDisplay) {
+      targetLinkDisplay.textContent = targetUrl || 'No link configured';
+    }
+
+    // Configure Direct Play buttons (both primary showcase & bottom of guide)
+    const setupPlayButton = (btn) => {
+      if (!btn) return;
+      btn.href = targetUrl || '#';
+      btn.setAttribute('title', `Launch ${game.title} directly`);
+      btn.onclick = (e) => {
+        if (!targetUrl || targetUrl === '#') {
+          e.preventDefault();
+          showToast('No executable link configured for this game.');
+          return false;
+        }
+        // Direct browser navigation straight to the executable link
+        window.location.href = targetUrl;
+        return false;
+      };
+    };
+
+    setupPlayButton(directPlayBtn);
+    setupPlayButton(directPlayBtnSecondary);
 
     // Visual Keyboard / Mouse Controls Guide
     if (controlsGridEl) {
@@ -89,96 +156,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Instructions and High-score Goal
     if (gameInstructionsEl) {
-      gameInstructionsEl.textContent = game.instructions || game.description || 'Use controls to play.';
+      gameInstructionsEl.textContent = game.instructions || game.description || 'Follow on-screen objectives to play and score.';
     }
 
     if (goalBannerEl) {
-      goalBannerEl.innerHTML = `<strong>HIGH-SCORE OBJECTIVE:</strong> ${escapeHtml(game.highScoreGoal || 'Reach the top tier on the GlitchNest leaderboards!')}`;
+      goalBannerEl.innerHTML = `<strong>HIGH-SCORE OBJECTIVE:</strong> ${escapeHtml(game.highScoreGoal || 'Aim for the top tier on the sunny leaderboards!')}`;
     }
   }
 
-  // Set up iframe viewport
-  function loadGameStage(game) {
-    if (!gameFrame) return;
-
-    if (stageLoader) stageLoader.classList.remove('hidden');
-
-    gameFrame.src = game.executable;
-
-    gameFrame.onload = () => {
-      setTimeout(() => {
-        if (stageLoader) stageLoader.classList.add('hidden');
-        // Focus iframe for immediate keyboard capture
-        try {
-          gameFrame.contentWindow.focus();
-        } catch (e) {}
-      }, 350);
-    };
-
-    gameFrame.onerror = () => {
-      if (stageLoader) {
-        stageLoader.innerHTML = `
-          <div style="color: var(--neon-red); font-family: var(--font-mono); font-weight: 700; text-align: center;">
-            [STAGE INITIALIZATION FAILURE]<br>
-            Unable to load source executable: ${escapeHtml(game.executable)}
-          </div>
-        `;
-      }
-    };
-  }
-
-  // HTML5 Fullscreen API Integration
-  if (fullscreenBtn && stageContainer) {
-    fullscreenBtn.addEventListener('click', toggleFullscreen);
-
-    function toggleFullscreen() {
-      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-        if (stageContainer.requestFullscreen) {
-          stageContainer.requestFullscreen();
-        } else if (stageContainer.webkitRequestFullscreen) {
-          stageContainer.webkitRequestFullscreen();
-        }
-      } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        }
-      }
-    }
-
-    // Sync button text on fullscreen change
-    document.addEventListener('fullscreenchange', handleFsChange);
-    document.addEventListener('webkitfullscreenchange', handleFsChange);
-
-    function handleFsChange() {
-      const isFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
-      fullscreenBtn.innerHTML = isFs 
-        ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg> Exit Fullscreen`
-        : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg> Fullscreen`;
-    }
-  }
-
-  // Restart Game Action
-  if (restartBtn && gameFrame) {
-    restartBtn.addEventListener('click', () => {
-      if (stageLoader) stageLoader.classList.remove('hidden');
-      const currentSrc = gameFrame.src;
-      gameFrame.src = '';
-      setTimeout(() => {
-        gameFrame.src = currentSrc;
-      }, 100);
-      showToast('Game stage restarted.');
-    });
-  }
-
-  // Share Game Action
+  // Share Game Link Action
   if (shareBtn) {
     shareBtn.addEventListener('click', () => {
       const url = window.location.href;
       if (navigator.clipboard) {
         navigator.clipboard.writeText(url).then(() => {
-          showToast('Game link copied to clipboard!');
+          showToast('Game details link copied to clipboard!');
         }).catch(() => {
           prompt('Copy game link:', url);
         });
@@ -247,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const recommendations = all.filter(g => g.id !== excludeId && g.slug !== excludeId).slice(0, 4);
 
       if (recommendations.length === 0) {
-        recommendedGridEl.innerHTML = `<p style="color: var(--text-dim);">No other games currently online.</p>`;
+        recommendedGridEl.innerHTML = `<p style="color: var(--ink-dim); font-family: var(--font-hand); font-size: 1.1rem;">No other games currently in catalog.</p>`;
         return;
       }
 
@@ -270,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="card-footer">
               <span class="card-developer">${escapeHtml(game.developer || 'GlitchNest')}</span>
               <div class="card-stats">
-                <span class="stat-rating">★ ${game.rating || '4.9'}</span>
+                <span class="stat-rating">★ ${game.rating || '5.0'}</span>
               </div>
             </div>
           </div>
@@ -283,13 +275,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Error State display
   function showErrorState(title, message) {
-    if (stageContainer) {
-      stageContainer.innerHTML = `
-        <div style="height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #090d16; text-align: center; padding: 2rem;">
-          <h2 style="font-size: 2rem; color: var(--neon-red); margin-bottom: 0.5rem; text-shadow: 0 0 15px rgba(239, 68, 68, 0.4);">${escapeHtml(title)}</h2>
-          <p style="color: var(--text-muted); margin-bottom: 1.5rem; max-width: 480px;">${escapeHtml(message)}</p>
+    if (showcaseContainer) {
+      showcaseContainer.innerHTML = `
+        <div style="background: #ffffff; border: 3px solid var(--ink-main); border-radius: 20px; padding: 3rem 2rem; text-align: center; box-shadow: 6px 6px 0 var(--ink-main);">
+          <h2 style="font-size: 2.2rem; color: #b91c1c; margin-bottom: 0.5rem;">${escapeHtml(title)}</h2>
+          <p style="font-family: var(--font-hand); font-size: 1.25rem; color: var(--ink-muted); margin-bottom: 1.5rem; max-width: 480px; margin-left: auto; margin-right: auto;">${escapeHtml(message)}</p>
           <a href="index.html" class="action-btn">
-            RETURN TO CATALOG
+            &larr; RETURN TO SUNNY CATALOG
           </a>
         </div>
       `;
@@ -319,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const toast = document.createElement('div');
     toast.className = 'toast';
     toast.innerHTML = `
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
         <polyline points="22 4 12 14.01 9 11.01"/>
       </svg>

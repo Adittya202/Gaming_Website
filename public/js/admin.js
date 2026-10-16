@@ -420,6 +420,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /**
+   * Helper to resolve executable link for admin launch buttons
+   */
+  function resolveExecutableUrl(raw) {
+    if (!raw) return '#';
+    let url = String(raw).trim();
+    if (!url) return '#';
+    if (/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//i.test(url)) return url;
+    if (url.startsWith('/') || url.startsWith('./') || url.startsWith('../')) return url;
+    if (url.startsWith('games/')) return '/' + url;
+    if (/^[a-zA-Z0-9][a-zA-Z0-9-]*\.[a-zA-Z]{2,}/.test(url)) return 'https://' + url;
+    return url;
+  }
+
   // Load Admin Catalog Table
   async function loadAdminCatalog() {
     if (!catalogTableBody) return;
@@ -437,6 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
       catalogTableBody.innerHTML = games.map(game => {
         const isVisible = game.visible !== false;
         const gameId = encodeURIComponent(game.slug || game.id);
+        const directExecUrl = resolveExecutableUrl(game.executable);
         return `
           <tr data-id="${gameId}">
             <td>
@@ -466,8 +481,11 @@ document.addEventListener('DOMContentLoaded', () => {
             </td>
             <td>
               <div class="table-actions">
-                <a href="play.html?id=${gameId}" target="_blank" class="table-btn" title="Preview Game">
-                  ▶ View
+                <a href="play.html?id=${gameId}" target="_blank" class="table-btn" title="View Game Details Page">
+                  ▶ Details
+                </a>
+                <a href="${directExecUrl}" target="_blank" rel="noopener noreferrer" class="table-btn" title="Launch Executable Directly">
+                  ⚡ Launch
                 </a>
                 <button class="table-btn" onclick="toggleVisibility('${gameId}', ${isVisible})" title="Toggle Visibility">
                   ${isVisible ? 'Hide' : 'Show'}
@@ -497,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const description = document.getElementById('gameDescInput').value.trim();
       const controlsRaw = document.getElementById('gameControlsInput').value.trim();
       const thumbnail = document.getElementById('gameThumbInput').value.trim() || '/assets/thumbnails/default.svg';
-      const executable = document.getElementById('gameExecInput').value.trim();
+      let executable = document.getElementById('gameExecInput').value.trim();
       const version = document.getElementById('gameVersionInput').value.trim() || 'v1.0.0';
       const developer = document.getElementById('gameDevInput').value.trim() || 'GlitchNest Creator';
       const featured = document.getElementById('gameFeaturedInput').checked;
@@ -509,8 +527,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       if (!executable) {
-        showToast('Error: Executable path is required.');
+        showToast('Error: Executable link or path is required.');
         return;
+      }
+
+      // Auto-prefix https:// if domain format without protocol
+      if (!/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//i.test(executable) && !executable.startsWith('/') && /^[a-zA-Z0-9][a-zA-Z0-9-]*\.[a-zA-Z]{2,}/.test(executable)) {
+        executable = 'https://' + executable;
       }
 
       // Parse controls

@@ -69,65 +69,72 @@
   <!-- Game Runner & Monetization Hub Layout -->
   <main class="runner-page-layout" id="gameRunnerMain">
     
-    <!-- Primary Stage & Metadata Column -->
-    <section class="runner-main-column" aria-label="Game Stage and Controls">
+    <!-- Primary Showcase & Details Column -->
+    <section class="runner-main-column" aria-label="Game Showcase and Details">
       
-      <!-- 16:9 Aspect Ratio Game Stage (Cute Monitor Frame) -->
-      <div class="stage-container" id="stageContainer">
+      <!-- Game Showcase & Direct Launch Card (16:9 Poster + Play Button) -->
+      <article class="game-showcase-card" id="showcaseContainer">
         
-        <!-- Loading Screen -->
-        <div class="stage-loader" id="stageLoader">
-          <div class="loader-spinner"></div>
-          <div class="loader-text">☀ OPENING SKETCHBOOK STAGE... ☁</div>
+        <!-- 16:9 Thumbnail Artwork Poster -->
+        <div class="showcase-poster-wrapper">
+          <img id="gamePosterImg" src="/assets/thumbnails/default.svg" alt="Game Thumbnail Artwork" class="showcase-poster-img">
+          <div class="showcase-poster-tag" id="gameCategoryBadge">Arcade</div>
         </div>
 
-        <!-- Dynamic Game Iframe Sandbox -->
-        <iframe 
-          id="gameFrame" 
-          class="game-iframe" 
-          title="Game Canvas Viewport" 
-          allow="fullscreen; autoplay; gamepad"
-          allowfullscreen>
-        </iframe>
+        <!-- Showcase Info & Direct Launch Action -->
+        <div class="showcase-info-content">
+          <div class="showcase-tag-line">
+            <span>OFFICIAL TITLE</span>
+            <span class="tag-badge" id="gameVersionBadge">v1.0.0</span>
+          </div>
 
-      </div>
+          <h1 class="game-main-title" id="gameTitle">Loading Game Title...</h1>
 
-      <!-- Quick-Action Bar -->
-      <div class="stage-action-bar">
-        <div class="action-bar-left">
-          <button class="runner-btn" id="restartBtn" title="Restart Game Session">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-              <path d="M23 4v6h-6"/>
-              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
-            </svg>
-            Restart
-          </button>
-          <button class="runner-btn" id="favoriteBtn" title="Save to Favorites">
-            ♡ Like
-          </button>
+          <div class="showcase-meta-row">
+            <span class="meta-pill highlight" id="gameRating">★ 5.0 RATING</span>
+            <span class="meta-pill" id="gamePlays">100K+ PLAYS</span>
+            <span class="meta-pill">BY <span id="gameDevCredit">GlitchNest</span></span>
+          </div>
+
+          <p class="showcase-synopsis" id="gameSynopsis">
+            Loading game overview...
+          </p>
+
+          <!-- Direct Play Launch Action (Heads straight to executable link) -->
+          <div class="showcase-actions-row">
+            <a href="#" id="directPlayBtn" class="action-btn play-launch-btn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <span>PLAY GAME NOW</span>
+            </a>
+
+            <button type="button" class="runner-btn" id="shareBtn" title="Share Game Link">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+              Share
+            </button>
+
+            <button type="button" class="runner-btn" id="favoriteBtn" title="Save to Favorites">
+              ♡ Like
+            </button>
+          </div>
+
+          <!-- Direct Link Target Indicator -->
+          <div class="direct-destination-notice" id="directDestinationNotice">
+            <span class="notice-bullet">⚡</span>
+            <span>Direct executable target: <strong id="targetLinkDisplay">Loading target link...</strong></span>
+          </div>
         </div>
 
-        <div class="action-bar-right">
-          <button class="runner-btn" id="shareBtn" title="Share Game Link">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-              <circle cx="18" cy="5" r="3"/>
-              <circle cx="6" cy="12" r="3"/>
-              <circle cx="18" cy="19" r="3"/>
-              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-            </svg>
-            Share
-          </button>
-          <button class="runner-btn" id="fullscreenBtn" title="Toggle Fullscreen Mode">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
-            </svg>
-            Fullscreen
-          </button>
-        </div>
-      </div>
+      </article>
 
-      <!-- AdSense Slot #2 (In-Content Banner below Stage: 728x90) -->
+      <!-- AdSense Slot #2 (In-Content Banner below Showcase: 728x90) -->
       <div class="ad-container ad-in-content" aria-label="In-Game Advertisement">
         <span class="ad-label">☁ DOODLE SPONSOR SPOT ☁</span>
         <div class="ad-slot-frame" id="adSlot2">
@@ -146,19 +153,15 @@
 
       <!-- Game Metadata & Documentation Section (Open Notebook) -->
       <article class="game-details-card" aria-label="Game Instructions & Controls">
-        <div class="game-header-row">
-          <div>
-            <h1 class="game-main-title" id="gameTitle">Loading Game Title...</h1>
-            <div class="game-sub-badges">
-              <span class="tag-badge cyan" id="gameCategoryBadge">Arcade</span>
-              <span class="tag-badge" id="gameVersionBadge">v1.0.0</span>
-              <span class="tag-badge violet">BY <span id="gameDevCredit">GlitchNest</span></span>
-            </div>
-          </div>
-          <div style="text-align: right;">
-            <div style="color: var(--sunshine-amber); font-weight: 800; font-size: 1.35rem;" id="gameRating">★ 5.0</div>
-            <div style="color: var(--ink-dim); font-family: var(--font-hand); font-size: 1rem;" id="gamePlays">100K+ PLAYS</div>
-          </div>
+        <div class="notebook-section-header">
+          <h2 class="notebook-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            GAMEPLAY GUIDE & INSTRUCTIONS ✏
+          </h2>
+          <span class="guide-badge">VERIFIED TITLE</span>
         </div>
 
         <!-- Visual Hand-Drawn Keyboard Guide -->
@@ -187,6 +190,19 @@
         <div class="goal-banner" id="goalBanner">
           <strong>HIGH-SCORE OBJECTIVE:</strong> Aim for the top tier on the sunny leaderboards!
         </div>
+
+        <!-- Secondary Direct Launch Action at bottom of instructions -->
+        <div class="secondary-launch-row">
+          <span style="font-family: var(--font-hand); font-size: 1.2rem; color: var(--ink-muted); font-weight: 700;">
+            Ready to jump straight into the game?
+          </span>
+          <a href="#" id="directPlayBtnSecondary" class="action-btn play-launch-btn" style="font-size: 1.15rem; padding: 0.75rem 2rem;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <span>LAUNCH GAME NOW</span>
+          </a>
+        </div>
       </article>
 
     </section>
@@ -213,13 +229,14 @@
 
       <!-- Quick Telemetry Notebook card -->
       <div class="admin-card" style="padding: 1.25rem;">
-        <div style="font-family: var(--font-hand); font-size: 1.1rem; font-weight: 700; color: var(--sunshine-orange); margin-bottom: 0.5rem;">
-          // SUNSHINE SPECS ☀
+        <div style="font-family: var(--font-hand); font-size: 1.15rem; font-weight: 700; color: var(--sunshine-orange); margin-bottom: 0.5rem;">
+          // GAME SPECIFICATIONS ☀
         </div>
         <div style="font-family: var(--font-hand); font-size: 1.05rem; color: var(--ink-muted); line-height: 1.6;">
-          <div>Engine: <span style="color:var(--ink-main); font-weight:700;">HTML5 Canvas & Web Audio</span></div>
-          <div>Stage: <span style="color:var(--ink-main); font-weight:700;">Strict 16:9 Aspect Ratio</span></div>
-          <div>Performance: <span style="color:#1b4332; font-weight:700;">Smooth 60 FPS</span></div>
+          <div>Launch Mode: <span style="color:#1b4332; font-weight:700;">Direct Executable Link</span></div>
+          <div>Display Frame: <span style="color:var(--ink-main); font-weight:700;">Native Browser / Zero Iframe</span></div>
+          <div>Media Format: <span style="color:var(--ink-main); font-weight:700;">Strict 16:9 Artwork</span></div>
+          <div>Developer: <span id="sidebarDevCredit" style="color:var(--ink-main); font-weight:700;">GlitchNest</span></div>
         </div>
       </div>
 

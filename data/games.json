@@ -1,1 +1,153 @@
-[]
+[
+  {
+    "id": "bucc-promotion-hub",
+    "slug": "bucc-promotion-hub",
+    "title": "BUCC Promotion Hub",
+    "category": "Action",
+    "tags": [
+      "Action",
+      "Arcade",
+      "GlitchNest"
+    ],
+    "description": "BUCC Promotional Hub game with dynamic mechanics, high agility reflexes, and leaderboard challenges.",
+    "synopsis": "BUCC Promotional Hub arcade title by Adittya Dey.",
+    "thumbnail": "/assets/thumbnails/bucc-promotion-hub-1792142734041.png",
+    "executable": "https://buccpromotiongame.vercel.app",
+    "version": "v1.0.0",
+    "developer": "Adittya Dey",
+    "rating": "5.0",
+    "plays": "12.4K",
+    "featured": true,
+    "visible": true,
+    "controls": [
+      {
+        "key": "Spacebar",
+        "action": "Jump / Agility Leap"
+      },
+      {
+        "key": "Left Click",
+        "action": "Activate Shield Barrier"
+      },
+      {
+        "key": "Right Click",
+        "action": "Fire Weapon Blast"
+      }
+    ],
+    "instructions": "Use controls to navigate obstacles, activate your energy shields when under threat, and fire blasts to score points.",
+    "highScoreGoal": "Aim for the GlitchNest leaderboard top spot!"
+  },
+  {
+    "id": "neon-bounce-arcade",
+    "slug": "neon-bounce-arcade",
+    "title": "Neon Bounce Arcade: Sunny Cloud Edition",
+    "category": "Arcade",
+    "tags": [
+      "Arcade",
+      "Retro",
+      "GlitchNest",
+      "Physics"
+    ],
+    "description": "High-velocity doodle paddle bounce arcade. Shatter neon bricks, catch power-ups, and hit maximum multipliers under cheerful sunny skies.",
+    "synopsis": "High-velocity paddle reflex game with procedural brick cascades and joyful cloud chimes.",
+    "thumbnail": "/assets/thumbnails/demo-game.svg",
+    "executable": "/games/demo-game/index.html",
+    "version": "v2.1.0",
+    "developer": "GlitchNest Studios",
+    "rating": "4.9",
+    "plays": "128K",
+    "featured": false,
+    "visible": true,
+    "controls": [
+      {
+        "key": "Mouse / Touch",
+        "action": "Deflect Paddle"
+      },
+      {
+        "key": "Spacebar",
+        "action": "Launch Power Orb"
+      },
+      {
+        "key": "P",
+        "action": "Pause Game"
+      }
+    ],
+    "instructions": "Keep the energetic orb bouncing! Break every golden brick to summon cloud bonuses and maintain your combo streak.",
+    "highScoreGoal": "Reach 25,000 points to unlock Sunny Gold tier!"
+  },
+  {
+    "id": "cyber-drift",
+    "slug": "cyber-drift",
+    "title": "Cyber Drift: Sunny Coast Cruiser",
+    "category": "Action",
+    "tags": [
+      "Action",
+      "Arcade",
+      "GlitchNest",
+      "Racing"
+    ],
+    "description": "Drift along the sunny coastal highway. Dodge traffic barriers and draft behind high-speed hovercrafts.",
+    "synopsis": "Fast-paced pseudo-3D highway drift racing with sunshine scenery and electronic synth beats.",
+    "thumbnail": "/assets/thumbnails/cyber-drift.svg",
+    "executable": "/games/cyber-drift/index.html",
+    "version": "v1.4.0",
+    "developer": "GlitchNest Speedworks",
+    "rating": "4.8",
+    "plays": "85K",
+    "featured": false,
+    "visible": true,
+    "controls": [
+      {
+        "key": "A / D or Left / Right",
+        "action": "Steer Hovercraft"
+      },
+      {
+        "key": "W or Up",
+        "action": "Accelerate Nitro"
+      },
+      {
+        "key": "Spacebar",
+        "action": "Handbrake Drift"
+      }
+    ],
+    "instructions": "Maintain high velocity without scraping roadside barriers. Collect sunshine energy tokens for nitro boosts.",
+    "highScoreGoal": "Survive 5 consecutive laps without collision!"
+  },
+  {
+    "id": "neon-survivor",
+    "slug": "neon-survivor",
+    "title": "Neon Survivor: Starry Sky Skiff",
+    "category": "Action",
+    "tags": [
+      "Action",
+      "Arcade",
+      "GlitchNest",
+      "Shooter"
+    ],
+    "description": "Pilot your sky skiff through floating cloud waves. Blast geometric rogue drones and harvest radiant energy cores.",
+    "synopsis": "Top-down celestial sky shooter with 360-degree aiming and upgrading ordnance.",
+    "thumbnail": "/assets/thumbnails/neon-survivor.svg",
+    "executable": "/games/neon-survivor/index.html",
+    "version": "v1.2.0",
+    "developer": "GlitchNest Orbit",
+    "rating": "5.0",
+    "plays": "94K",
+    "featured": false,
+    "visible": true,
+    "controls": [
+      {
+        "key": "W A S D",
+        "action": "Navigate Sky Skiff"
+      },
+      {
+        "key": "Mouse Aim & Click",
+        "action": "Fire Plasma Blasters"
+      },
+      {
+        "key": "Shift",
+        "action": "Cloud Warp Dash"
+      }
+    ],
+    "instructions": "Defeat encroaching enemy waves and collect fallen energy cores to upgrade beam spread and shields.",
+    "highScoreGoal": "Clear wave 15 to earn the Sky Admiral badge!"
+  }
+]
