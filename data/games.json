@@ -1,43 +1,5 @@
 [
   {
-    "id": "neon-bounce-arcade",
-    "slug": "neon-bounce-arcade",
-    "title": "Neon Bounce Arcade: Sunny Cloud Edition",
-    "category": "Arcade",
-    "tags": [
-      "Arcade",
-      "Retro",
-      "GlitchNest",
-      "Physics"
-    ],
-    "description": "High-velocity doodle paddle bounce arcade. Shatter neon bricks, catch power-ups, and hit maximum multipliers under cheerful sunny skies.",
-    "synopsis": "High-velocity paddle reflex game with procedural brick cascades and joyful cloud chimes.",
-    "thumbnail": "/assets/thumbnails/demo-game.svg",
-    "executable": "/games/demo-game/index.html",
-    "version": "v2.1.0",
-    "developer": "GlitchNest Studios",
-    "rating": "4.9",
-    "plays": "128K",
-    "featured": false,
-    "visible": true,
-    "controls": [
-      {
-        "key": "Mouse / Touch",
-        "action": "Deflect Paddle"
-      },
-      {
-        "key": "Spacebar",
-        "action": "Launch Power Orb"
-      },
-      {
-        "key": "P",
-        "action": "Pause Game"
-      }
-    ],
-    "instructions": "Keep the energetic orb bouncing! Break every golden brick to summon cloud bonuses and maintain your combo streak.",
-    "highScoreGoal": "Reach 25,000 points to unlock Sunny Gold tier!"
-  },
-  {
     "id": "cyber-drift",
     "slug": "cyber-drift",
     "title": "Cyber Drift: Sunny Coast Cruiser",
