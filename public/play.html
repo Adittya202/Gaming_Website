@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Play Game - GlitchNest Sunny Arcade</title>
+  <meta name="description" content="Play cheerful hand-crafted browser games directly on GlitchNest. Fullscreen mode, sunny clouds, zero latency, and responsive controls.">
+  <meta name="theme-color" content="#fdfbf7">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <!-- ======================================================================
+       GOOGLE ADSENSE INTEGRATION POINT
+       INSTRUCTIONS:
+       1. Replace 'ca-pub-XXXXXXXXXXXXXXXX' with your approved AdSense Publisher ID.
+       2. Uncomment the script tag below when ready for production deployment.
+       ====================================================================== -->
+  <!--
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+          crossorigin="anonymous"></script>
+  -->
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Floating Clouds & Radiant Sunshine Backdrop -->
+  <div class="cloud-sky-backdrop" aria-hidden="true">
+    <div class="sunshine-orb"></div>
+    <div class="doodle-cloud cloud-1"></div>
+    <div class="doodle-cloud cloud-2"></div>
+    <div class="doodle-cloud cloud-3"></div>
+  </div>
+
+  <!-- Site Header & Navigation -->
+  <header class="site-header" role="banner">
+    <div class="header-container">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo" id="brandLogo" aria-label="GlitchNest Home">
+        <img src="assets/logo.svg" alt="GlitchNest Sunny Arcade" class="brand-icon">
+        <span class="brand-text">Glitch<span style="color: var(--sunshine-orange)">Nest</span></span>
+        <span class="brand-badge">☀ ARCADE</span>
+      </a>
+
+      <!-- Quick Breadcrumb Navigation -->
+      <nav class="header-actions" aria-label="Breadcrumb Navigation">
+        <a href="index.html" class="admin-nav-link" title="Back to Catalog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+          <span>☀ ALL GAMES</span>
+        </a>
+        <a href="admin.html" class="admin-nav-link" title="Creator Desk">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>CREATOR DESK</span>
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Game Runner & Monetization Hub Layout -->
+  <main class="runner-page-layout" id="gameRunnerMain">
+    
+    <!-- Primary Stage & Metadata Column -->
+    <section class="runner-main-column" aria-label="Game Stage and Controls">
+      
+      <!-- 16:9 Aspect Ratio Game Stage (Cute Monitor Frame) -->
+      <div class="stage-container" id="stageContainer">
+        
+        <!-- Loading Screen -->
+        <div class="stage-loader" id="stageLoader">
+          <div class="loader-spinner"></div>
+          <div class="loader-text">☀ OPENING SKETCHBOOK STAGE... ☁</div>
+        </div>
+
+        <!-- Dynamic Game Iframe Sandbox -->
+        <iframe 
+          id="gameFrame" 
+          class="game-iframe" 
+          title="Game Canvas Viewport" 
+          allow="fullscreen; autoplay; gamepad"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+      <!-- Quick-Action Bar -->
+      <div class="stage-action-bar">
+        <div class="action-bar-left">
+          <button class="runner-btn" id="restartBtn" title="Restart Game Session">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <path d="M23 4v6h-6"/>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+            </svg>
+            Restart
+          </button>
+          <button class="runner-btn" id="favoriteBtn" title="Save to Favorites">
+            ♡ Like
+          </button>
+        </div>
+
+        <div class="action-bar-right">
+          <button class="runner-btn" id="shareBtn" title="Share Game Link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <circle cx="18" cy="5" r="3"/>
+              <circle cx="6" cy="12" r="3"/>
+              <circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+            Share
+          </button>
+          <button class="runner-btn" id="fullscreenBtn" title="Toggle Fullscreen Mode">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+            </svg>
+            Fullscreen
+          </button>
+        </div>
+      </div>
+
+      <!-- AdSense Slot #2 (In-Content Banner below Stage: 728x90) -->
+      <div class="ad-container ad-in-content" aria-label="In-Game Advertisement">
+        <span class="ad-label">☁ DOODLE SPONSOR SPOT ☁</span>
+        <div class="ad-slot-frame" id="adSlot2">
+          <!-- Standard Google AdSense unit markup -->
+          <ins class="adsbygoogle"
+               style="display:inline-block;width:728px;height:90px"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+               data-ad-slot="9876543210"></ins>
+          <!-- Dev fallback preview -->
+          <div class="ad-placeholder-text">
+            <span>[ADSENSE DEV PREVIEW // IN-CONTENT BANNER]</span>
+            <div class="ad-placeholder-id">Slot #2 &bull; 728x90 Responsive Unit</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game Metadata & Documentation Section (Open Notebook) -->
+      <article class="game-details-card" aria-label="Game Instructions & Controls">
+        <div class="game-header-row">
+          <div>
+            <h1 class="game-main-title" id="gameTitle">Loading Game Title...</h1>
+            <div class="game-sub-badges">
+              <span class="tag-badge cyan" id="gameCategoryBadge">Arcade</span>
+              <span class="tag-badge" id="gameVersionBadge">v1.0.0</span>
+              <span class="tag-badge violet">BY <span id="gameDevCredit">GlitchNest</span></span>
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <div style="color: var(--sunshine-amber); font-weight: 800; font-size: 1.35rem;" id="gameRating">★ 5.0</div>
+            <div style="color: var(--ink-dim); font-family: var(--font-hand); font-size: 1rem;" id="gamePlays">100K+ PLAYS</div>
+          </div>
+        </div>
+
+        <!-- Visual Hand-Drawn Keyboard Guide -->
+        <div class="controls-guide-box">
+          <div class="guide-heading">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <rect x="2" y="4" width="20" height="16" rx="2" ry="2"/>
+              <path d="M6 8h.001M10 8h.001M14 8h.001M18 8h.001M8 12h.001M12 12h.001M16 12h.001M6 16h12"/>
+            </svg>
+            HOW TO PLAY // CONTROLS
+          </div>
+          <div class="controls-grid" id="controlsGrid">
+            <!-- Populated dynamically with hand-sketched keys -->
+          </div>
+        </div>
+
+        <!-- Instructions & Lore -->
+        <h3 style="font-size: 1.25rem; font-weight: 900; margin-bottom: 0.4rem; color: var(--ink-main);">
+          MISSION BRIEFING & SKETCH NOTES
+        </h3>
+        <p class="game-instructions-body" id="gameInstructions">
+          Loading game instructions and sunny doodle objectives...
+        </p>
+
+        <!-- High-Score Goal Banner -->
+        <div class="goal-banner" id="goalBanner">
+          <strong>HIGH-SCORE OBJECTIVE:</strong> Aim for the top tier on the sunny leaderboards!
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Sticky Companion Sidebar (AdSense Slot #3 + Quick Info) -->
+    <aside class="runner-sidebar" role="complementary" aria-label="Sponsored Companion Units">
+      
+      <!-- AdSense Slot #3: Sticky Companion Unit (300x250 or 300x600) -->
+      <div class="ad-container ad-sidebar">
+        <span class="ad-label">☁ DOODLE COMPANION ☁</span>
+        <div class="ad-slot-frame" id="adSlot3">
+          <!-- Standard Google AdSense unit markup -->
+          <ins class="adsbygoogle"
+               style="display:inline-block;width:300px;height:600px"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+               data-ad-slot="5432109876"></ins>
+          <!-- Dev fallback preview -->
+          <div class="ad-placeholder-text">
+            <span>[ADSENSE DEV PREVIEW // COMPANION UNIT]</span>
+            <div class="ad-placeholder-id">Slot #3 &bull; 300x600 Sticky Sidebar</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Telemetry Notebook card -->
+      <div class="admin-card" style="padding: 1.25rem;">
+        <div style="font-family: var(--font-hand); font-size: 1.1rem; font-weight: 700; color: var(--sunshine-orange); margin-bottom: 0.5rem;">
+          // SUNSHINE SPECS ☀
+        </div>
+        <div style="font-family: var(--font-hand); font-size: 1.05rem; color: var(--ink-muted); line-height: 1.6;">
+          <div>Engine: <span style="color:var(--ink-main); font-weight:700;">HTML5 Canvas & Web Audio</span></div>
+          <div>Stage: <span style="color:var(--ink-main); font-weight:700;">Strict 16:9 Aspect Ratio</span></div>
+          <div>Performance: <span style="color:#1b4332; font-weight:700;">Smooth 60 FPS</span></div>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- "More From GlitchNest" 4 Recommended Game Cards -->
+  <section class="recommended-section" aria-label="Recommended Titles">
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <h2 class="section-title">MORE FROM GLITCHNEST ☁</h2>
+      </div>
+    </div>
+    <div class="games-grid" id="recommendedGrid">
+      <!-- Populated dynamically with 4 recommended titles -->
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 0.5rem;">
+            <span class="brand-text">Glitch<span style="color: var(--sunshine-orange)">Nest</span></span>
+            <span style="font-size: 1.5rem; margin-left: 4px;">☀</span>
+          </div>
+          <p class="footer-tagline">
+            Host, play, and monetize custom web games with maximum happiness and zero latency.
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">☀ Arcade Home</a>
+          <a href="admin.html">✏ Creator Desk</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 GlitchNest Sunny Portal.</div>
+        <div style="color: var(--sunshine-orange); font-weight: 700;">POWERED BY GLITCHNEST ENGINE</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Script -->
+  <script src="js/player.js"></script>
+</body>
+</html>

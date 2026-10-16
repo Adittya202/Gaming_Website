@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <pattern id="paperGrid2" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e2e8f0" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <!-- Sunny Sky Background -->
+  <rect width="1280" height="720" fill="#fef9ef" />
+  <rect width="1280" height="420" fill="#e8f4fd" />
+  <rect width="1280" height="720" fill="url(#paperGrid2)" opacity="0.4" />
+
+  <!-- Huge Smiling Warm Sunshine -->
+  <g transform="translate(640, 220)">
+    <!-- Sunburst lines -->
+    <g stroke="#ffb703" stroke-width="6" stroke-linecap="round">
+      <line x1="0" y1="-140" x2="0" y2="-180" />
+      <line x1="100" y1="-100" x2="135" y2="-135" />
+      <line x1="140" y1="0" x2="180" y2="0" />
+      <line x1="100" y1="100" x2="135" y2="135" />
+      <line x1="-100" y1="-100" x2="-135" y2="-135" />
+      <line x1="-140" y1="0" x2="-180" y2="0" />
+      <line x1="-100" y1="100" x2="-135" y2="135" />
+    </g>
+    <circle cx="0" cy="0" r="110" fill="#ffd166" stroke="#232936" stroke-width="5" />
+    <!-- Happy Face with Cool Sunglasses Doodle -->
+    <path d="M-60,-15 L-10,-15 L-15,10 L-55,10 Z" fill="#232936" />
+    <path d="M10,-15 L60,-15 L55,10 L15,10 Z" fill="#232936" />
+    <line x1="-10" y1="-10" x2="10" y2="-10" stroke="#232936" stroke-width="5" />
+    <!-- Smile -->
+    <path d="M-30,35 Q0,65 30,35" fill="none" stroke="#232936" stroke-width="5" stroke-linecap="round" />
+  </g>
+
+  <!-- Puffy Floating Clouds -->
+  <g fill="#ffffff" stroke="#232936" stroke-width="4.5" stroke-linejoin="round">
+    <!-- Left Cloud -->
+    <path d="M160,200 C130,200 100,160 120,120 C140,80 200,80 230,100 C260,70 330,70 360,110 C400,90 450,110 450,160 C480,170 480,210 450,230 C430,250 180,240 160,200 Z" />
+    <!-- Right Cloud -->
+    <path d="M850,220 C820,220 800,180 820,140 C840,110 900,100 930,120 C960,90 1020,90 1050,130 C1090,120 1140,140 1130,190 C1160,200 1160,240 1120,250 C1100,260 870,250 850,220 Z" />
+  </g>
+
+  <!-- Hand-drawn Rolling Hills -->
+  <path d="M-20,440 Q320,340 640,430 T1300,410 L1300,720 L-20,720 Z" fill="#b7e4c7" stroke="#232936" stroke-width="4.5" />
+  <path d="M-20,490 Q400,410 850,480 T1300,470 L1300,720 L-20,720 Z" fill="#95d5b2" stroke="#232936" stroke-width="4.5" />
+
+  <!-- Doodle Road Leading into Horizon -->
+  <polygon points="640,430 670,430 920,720 360,720" fill="#f8edeb" stroke="#232936" stroke-width="5" />
+  <!-- Road dashed stripes (hand-drawn scribbles) -->
+  <g stroke="#ffb703" stroke-width="6" stroke-linecap="round">
+    <line x1="645" y1="440" x2="645" y2="465" />
+    <line x1="645" y1="485" x2="645" y2="520" />
+    <line x1="644" y1="550" x2="643" y2="600" />
+    <line x1="642" y1="635" x2="640" y2="705" />
+  </g>
+
+  <!-- Palm Tree Doodle Left -->
+  <g transform="translate(240, 360)">
+    <!-- Trunk -->
+    <path d="M40,240 Q60,120 20,0" fill="none" stroke="#232936" stroke-width="12" stroke-linecap="round" />
+    <path d="M40,240 Q60,120 20,0" fill="none" stroke="#d4a373" stroke-width="6" stroke-linecap="round" />
+    <!-- Palm Fronds -->
+    <g fill="none" stroke="#232936" stroke-width="5">
+      <path d="M20,0 Q-40,-40 -80,-10" fill="#52b788" />
+      <path d="M20,0 Q0,-60 -20,-90" fill="#52b788" />
+      <path d="M20,0 Q60,-70 80,-40" fill="#52b788" />
+      <path d="M20,0 Q90,-30 110,10" fill="#52b788" />
+    </g>
+  </g>
+
+  <!-- Cute Hand-Drawn Convertible Car -->
+  <g transform="translate(640, 560)">
+    <!-- Motion Speed Lines / Dust Clouds -->
+    <path d="M-140,55 C-160,35 -190,55 -210,40" fill="none" stroke="#ffb703" stroke-width="4.5" stroke-linecap="round" />
+    <path d="M140,55 C160,35 190,55 210,40" fill="none" stroke="#ffb703" stroke-width="4.5" stroke-linecap="round" />
+    
+    <!-- Wheels -->
+    <circle cx="-75" cy="50" r="22" fill="#232936" />
+    <circle cx="-75" cy="50" r="10" fill="#ffffff" />
+    <circle cx="75" cy="50" r="22" fill="#232936" />
+    <circle cx="75" cy="50" r="10" fill="#ffffff" />
+
+    <!-- Car Body -->
+    <path d="M-105,35 L-115,10 C-115,-5 -100,-15 -85,-15 L-55,-15 L-35,-45 L35,-45 L55,-15 L85,-15 C100,-15 115,-5 115,10 L105,35 Z" 
+          fill="#ff8500" stroke="#232936" stroke-width="5" stroke-linejoin="round" />
+    <!-- Windshield -->
+    <polygon points="-30,-40 30,-40 45,-15 -45,-15" fill="#e8f4fd" stroke="#232936" stroke-width="3" />
+    <!-- Smiling Driver with Cap -->
+    <circle cx="-5" cy="-35" r="14" fill="#ffd166" stroke="#232936" stroke-width="3" />
+    <circle cx="-1" cy="-36" r="2.5" fill="#232936" />
+    <path d="M-6,-30 Q0,-25 4,-30" fill="none" stroke="#232936" stroke-width="2" />
+    <path d="M-18,-45 Q-2,-55 14,-45" fill="#ff85a2" stroke="#232936" stroke-width="3" />
+    <!-- Headlights -->
+    <circle cx="-90" cy="12" r="8" fill="#ffd166" stroke="#232936" stroke-width="3" />
+    <circle cx="90" cy="12" r="8" fill="#ffd166" stroke="#232936" stroke-width="3" />
+  </g>
+
+  <!-- Washi Tape Title Banner -->
+  <g transform="translate(60, 50) rotate(-2)">
+    <rect x="0" y="0" width="280" height="52" fill="#ffd166" stroke="#232936" stroke-width="3.5" rx="6" />
+    <text x="140" y="35" font-family="'Shantell Sans', 'Patrick Hand', cursive" font-size="24" font-weight="900" fill="#232936" text-anchor="middle">
+      CYBER DRIFT 🚗☀
+    </text>
+  </g>
+</svg>

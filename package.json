@@ -1,0 +1,22 @@
+{
+  "name": "glitchnest-portal",
+  "version": "1.0.0",
+  "description": "GlitchNest - High-Performance Dark-Mode Browser Gaming Portal",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "gaming",
+    "portal",
+    "glitchnest",
+    "cyberpunk",
+    "arcade"
+  ],
+  "author": "GlitchNest Architect",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

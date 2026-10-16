@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <pattern id="paperGrid3" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e2e8f0" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="720" fill="#f0fdf4" />
+  <rect width="1280" height="720" fill="url(#paperGrid3)" opacity="0.4" />
+
+  <!-- Warm Sun peaking from corner with funny cute sunglasses -->
+  <g transform="translate(1120, 140)">
+    <circle cx="0" cy="0" r="100" fill="#ffd166" stroke="#232936" stroke-width="5" />
+    <g stroke="#ffb703" stroke-width="6" stroke-linecap="round">
+      <line x1="-120" y1="0" x2="-150" y2="0" />
+      <line x1="-90" y1="90" x2="-120" y2="120" />
+      <line x1="0" y1="120" x2="0" y2="150" />
+    </g>
+    <!-- Smiling Face -->
+    <circle cx="-35" cy="-10" r="8" fill="#232936" />
+    <circle cx="20" cy="-10" r="8" fill="#232936" />
+    <path d="M-25,20 Q-5,40 15,20" fill="none" stroke="#232936" stroke-width="5" stroke-linecap="round" />
+    <ellipse cx="-45" cy="15" rx="12" ry="6" fill="#ff85a2" />
+  </g>
+
+  <!-- Puffy Doodle Clouds floating across -->
+  <g fill="#ffffff" stroke="#232936" stroke-width="4.5" stroke-linejoin="round">
+    <path d="M220,180 C180,180 150,140 170,100 C190,60 250,60 280,80 C310,50 380,50 410,90 C450,70 500,90 500,140 C530,150 530,190 500,210 C480,230 240,220 220,180 Z" />
+    <path d="M780,280 C750,280 730,240 750,210 C770,180 820,170 850,190 C880,160 940,160 970,190 C1010,180 1050,200 1050,240 C1080,250 1070,290 1040,305 Z" />
+  </g>
+
+  <!-- Cute Rocket Doodle (The Player) -->
+  <g transform="translate(480, 420) rotate(-35)">
+    <!-- Rocket Flame / Puff Clouds -->
+    <path d="M-20,60 Q0,110 20,60 Q10,75 0,90 Q-10,75 -20,60 Z" fill="#ffd166" stroke="#232936" stroke-width="4" />
+    <!-- Rocket Wings -->
+    <polygon points="-35,35 -55,60 -20,55" fill="#ff85a2" stroke="#232936" stroke-width="4" stroke-linejoin="round" />
+    <polygon points="35,35 55,60 20,55" fill="#ff85a2" stroke="#232936" stroke-width="4" stroke-linejoin="round" />
+    <!-- Fuselage Body -->
+    <path d="M0,-70 C35,-30 35,45 25,55 L-25,55 C-35,45 -35,-30 0,-70 Z" fill="#ffffff" stroke="#232936" stroke-width="5" stroke-linejoin="round" />
+    <!-- Porthole Window with happy face -->
+    <circle cx="0" cy="-5" r="18" fill="#a0c4ff" stroke="#232936" stroke-width="3.5" />
+    <circle cx="-5" cy="-8" r="3" fill="#232936" />
+    <circle cx="5" cy="-8" r="3" fill="#232936" />
+    <path d="M-4,-1 Q0,3 4,-1" fill="none" stroke="#232936" stroke-width="2" stroke-linecap="round" />
+  </g>
+
+  <!-- Goofy Doodle Space Blobs (The Enemies) -->
+  <g transform="translate(850, 480)">
+    <!-- Cute Pink Blob with Tentacles -->
+    <path d="M0,-35 C25,-35 45,-15 45,15 C45,35 30,45 15,40 C0,45 -15,40 -30,45 C-45,35 -45,15 -45,-15 C-45,-35 -25,-35 0,-35 Z" 
+          fill="#ff99c8" stroke="#232936" stroke-width="4.5" />
+    <circle cx="-14" cy="-5" r="5" fill="#232936" />
+    <circle cx="14" cy="-5" r="5" fill="#232936" />
+    <circle cx="-12" cy="-7" r="1.5" fill="#ffffff" />
+    <circle cx="16" cy="-7" r="1.5" fill="#ffffff" />
+    <ellipse cx="0" cy="12" rx="8" ry="4" fill="#232936" />
+  </g>
+
+  <g transform="translate(720, 360)">
+    <!-- Cute Mint Green One-Eyed Alien Blob -->
+    <circle cx="0" cy="0" r="32" fill="#a7c957" stroke="#232936" stroke-width="4" />
+    <circle cx="0" cy="-5" r="11" fill="#ffffff" stroke="#232936" stroke-width="2.5" />
+    <circle cx="0" cy="-5" r="4.5" fill="#232936" />
+    <path d="M-10,12 Q0,20 10,12" fill="none" stroke="#232936" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  <!-- Star Doodles and Rainbow Sparkles -->
+  <g stroke="#ffb703" stroke-width="4" stroke-linecap="round">
+    <path d="M160,340 L160,370 M145,355 L175,355" />
+    <path d="M380,260 L380,285 M368,272 L392,272" />
+    <path d="M1020,440 L1020,470 M1005,455 L1035,455" />
+  </g>
+
+  <!-- Title Banner -->
+  <g transform="translate(60, 50) rotate(-2)">
+    <rect x="0" y="0" width="290" height="52" fill="#ffd166" stroke="#232936" stroke-width="3.5" rx="6" />
+    <text x="145" y="35" font-family="'Shantell Sans', 'Patrick Hand', cursive" font-size="24" font-weight="900" fill="#232936" text-anchor="middle">
+      NEON SURVIVOR 🚀✨
+    </text>
+  </g>
+</svg>

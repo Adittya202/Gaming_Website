@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <!-- Paper texture / subtle grid -->
+    <pattern id="paperGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e2e8f0" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <!-- Sky blue to sunny warm white background -->
+  <rect width="1280" height="720" fill="#f0f7ff" />
+  <rect width="1280" height="720" fill="url(#paperGrid)" opacity="0.6" />
+
+  <!-- Sun Rays & Big Happy Sun in top right -->
+  <g transform="translate(1080, 160)">
+    <g stroke="#ffb703" stroke-width="6" stroke-linecap="round">
+      <line x1="0" y1="-120" x2="0" y2="-150" />
+      <line x1="85" y1="-85" x2="110" y2="-110" />
+      <line x1="120" y1="0" x2="150" y2="0" />
+      <line x1="85" y1="85" x2="110" y2="110" />
+      <line x1="-85" y1="-85" x2="-110" y2="-110" />
+      <line x1="-120" y1="0" x2="-150" y2="0" />
+      <line x1="-85" y1="85" x2="-110" y2="110" />
+    </g>
+    <circle cx="0" cy="0" r="95" fill="#ffd166" stroke="#232936" stroke-width="5" />
+    <!-- Happy Sun Face -->
+    <circle cx="-30" cy="-15" r="9" fill="#232936" />
+    <circle cx="30" cy="-15" r="9" fill="#232936" />
+    <ellipse cx="-45" cy="10" rx="14" ry="7" fill="#ff85a2" />
+    <ellipse cx="45" cy="10" rx="14" ry="7" fill="#ff85a2" />
+    <path d="M-25,15 Q0,45 25,15" fill="none" stroke="#232936" stroke-width="6" stroke-linecap="round" />
+  </g>
+
+  <!-- Fluffy Hand-Drawn Clouds in Background -->
+  <g fill="#ffffff" stroke="#232936" stroke-width="4.5" stroke-linejoin="round">
+    <!-- Cloud 1 Left -->
+    <path d="M120,240 C90,240 60,200 80,160 C90,120 150,110 180,130 C200,90 280,80 320,120 C360,90 430,110 440,160 C480,160 500,210 480,240 Z" />
+    <!-- Cloud 2 Center Right -->
+    <path d="M720,280 C690,280 660,240 680,210 C700,180 740,170 770,190 C790,150 860,150 890,180 C930,160 980,180 990,220 C1020,220 1040,260 1020,280 Z" />
+  </g>
+
+  <!-- Hand-Drawn Rainbow Arch -->
+  <g fill="none" stroke-width="16" opacity="0.85">
+    <path d="M-40,680 Q240,120 680,480" stroke="#ff85a2" />
+    <path d="M-30,692 Q240,136 670,492" stroke="#ffd166" />
+    <path d="M-20,704 Q240,152 660,504" stroke="#06d6a0" />
+    <path d="M-10,716 Q240,168 650,516" stroke="#118ab2" />
+  </g>
+
+  <!-- Hand-Drawn Colorful Pastel Bricks with Doodles -->
+  <g stroke="#232936" stroke-width="4" stroke-linejoin="round">
+    <!-- Row 1 -->
+    <rect x="240" y="140" width="130" height="48" rx="14" fill="#ff85a2" />
+    <text x="305" y="172" font-family="'Patrick Hand', cursive" font-size="24" font-weight="700" fill="#232936" text-anchor="middle">★ +100</text>
+
+    <rect x="390" y="140" width="130" height="48" rx="14" fill="#ffd166" />
+    <text x="455" y="172" font-family="'Patrick Hand', cursive" font-size="24" font-weight="700" fill="#232936" text-anchor="middle">SUNNY</text>
+
+    <rect x="540" y="140" width="130" height="48" rx="14" fill="#06d6a0" />
+    <text x="605" y="172" font-family="'Patrick Hand', cursive" font-size="24" font-weight="700" fill="#232936" text-anchor="middle">CLOUD</text>
+
+    <rect x="690" y="140" width="130" height="48" rx="14" fill="#70d6ff" />
+    <text x="755" y="172" font-family="'Patrick Hand', cursive" font-size="24" font-weight="700" fill="#232936" text-anchor="middle">BOUNCE</text>
+
+    <!-- Row 2 -->
+    <rect x="315" y="205" width="130" height="48" rx="14" fill="#ffd166" />
+    <circle cx="360" cy="229" r="4" fill="#232936" />
+    <circle cx="400" cy="229" r="4" fill="#232936" />
+    <path d="M370,233 Q380,242 390,233" fill="none" stroke="#232936" stroke-width="3" stroke-linecap="round" />
+
+    <rect x="465" y="205" width="130" height="48" rx="14" fill="#ff99c8" />
+    <text x="530" y="237" font-family="'Patrick Hand', cursive" font-size="22" font-weight="700" fill="#232936" text-anchor="middle">COMBO 3x</text>
+
+    <rect x="615" y="205" width="130" height="48" rx="14" fill="#a0c4ff" />
+    <text x="680" y="237" font-family="'Patrick Hand', cursive" font-size="22" font-weight="700" fill="#232936" text-anchor="middle">POP!</text>
+  </g>
+
+  <!-- Happy Bouncing Sunball with Motion Squiggles -->
+  <g transform="translate(530, 390)">
+    <!-- Motion dotted curve -->
+    <path d="M-80,80 Q-20,0 0,-30" fill="none" stroke="#ffb703" stroke-width="4" stroke-dasharray="8 8" />
+    <!-- Ball body -->
+    <circle cx="0" cy="0" r="38" fill="#ffd166" stroke="#232936" stroke-width="4.5" />
+    <!-- Sun mini rays -->
+    <line x1="0" y1="-44" x2="0" y2="-54" stroke="#ffb703" stroke-width="4" stroke-linecap="round" />
+    <line x1="32" y1="-32" x2="40" y2="-40" stroke="#ffb703" stroke-width="4" stroke-linecap="round" />
+    <line x1="44" y1="0" x2="54" y2="0" stroke="#ffb703" stroke-width="4" stroke-linecap="round" />
+    <line x1="-32" y1="-32" x2="-40" y2="-40" stroke="#ffb703" stroke-width="4" stroke-linecap="round" />
+    <line x1="-44" y1="0" x2="-54" y2="0" stroke="#ffb703" stroke-width="4" stroke-linecap="round" />
+    <!-- Face -->
+    <circle cx="-11" cy="-6" r="4.5" fill="#232936" />
+    <circle cx="11" cy="-6" r="4.5" fill="#232936" />
+    <path d="M-8,8 Q0,18 8,8" fill="none" stroke="#232936" stroke-width="3" stroke-linecap="round" />
+    <ellipse cx="-18" cy="4" rx="5" ry="3" fill="#ff85a2" />
+    <ellipse cx="18" cy="4" rx="5" ry="3" fill="#ff85a2" />
+  </g>
+
+  <!-- Hand-Drawn Cloud Paddle -->
+  <g transform="translate(640, 580)">
+    <!-- Paddle Cloud -->
+    <path d="M-130,0 C-150,0 -160,-25 -140,-45 C-130,-60 -90,-60 -70,-45 C-50,-70 20,-75 50,-50 C80,-70 120,-60 135,-40 C155,-35 155,0 130,0 Z" 
+          fill="#ffffff" stroke="#232936" stroke-width="4.5" />
+    <!-- Pastel Rainbow Band in Paddle -->
+    <rect x="-80" y="-22" width="160" height="12" rx="6" fill="#ffd166" stroke="#232936" stroke-width="2.5" />
+    <!-- Paddle Eyes -->
+    <circle cx="-25" cy="-35" r="4" fill="#232936" />
+    <circle cx="25" cy="-35" r="4" fill="#232936" />
+    <path d="M-10,-28 Q0,-22 10,-28" fill="none" stroke="#232936" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  <!-- Washi Tape Banner in Top Left -->
+  <g transform="translate(70, 60) rotate(-3)">
+    <rect x="0" y="0" width="280" height="52" fill="#ffd166" stroke="#232936" stroke-width="3.5" rx="6" />
+    <text x="140" y="35" font-family="'Shantell Sans', 'Patrick Hand', cursive" font-size="24" font-weight="900" fill="#232936" text-anchor="middle">
+      NEON BOUNCE ☀
+    </text>
+  </g>
+
+  <!-- Hand-Drawn Sparkle Stars -->
+  <g stroke="#ffb703" stroke-width="3" stroke-linecap="round">
+    <path d="M180,480 L180,510 M165,495 L195,495" />
+    <path d="M960,420 L960,450 M945,435 L975,435" />
+    <path d="M840,560 L840,580 M830,570 L850,570" />
+  </g>
+</svg>

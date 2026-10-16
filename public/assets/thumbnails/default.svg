@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <pattern id="paperGrid6" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e2e8f0" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="720" fill="#fefae0" />
+  <rect width="1280" height="720" fill="url(#paperGrid6)" opacity="0.5" />
+
+  <!-- Sun Rays in Background -->
+  <g transform="translate(640, 360)">
+    <g stroke="#ffd166" stroke-width="10" stroke-linecap="round" opacity="0.6">
+      <line x1="0" y1="-260" x2="0" y2="-210" />
+      <line x1="180" y1="-180" x2="145" y2="-145" />
+      <line x1="260" y1="0" x2="210" y2="0" />
+      <line x1="180" y1="180" x2="145" y2="145" />
+      <line x1="0" y1="260" x2="0" y2="210" />
+      <line x1="-180" y1="180" x2="-145" y2="145" />
+      <line x1="-260" y1="0" x2="-210" y2="0" />
+      <line x1="-180" y1="-180" x2="-145" y2="-145" />
+    </g>
+  </g>
+
+  <!-- Puffy Doodle Clouds surrounding -->
+  <g fill="#ffffff" stroke="#232936" stroke-width="4.5" stroke-linejoin="round">
+    <path d="M220,240 C190,240 170,200 190,170 C210,140 260,130 290,150 C320,120 390,120 420,160 C460,150 490,180 480,220 C460,250 240,250 220,240 Z" />
+    <path d="M840,480 C810,480 790,440 810,410 C830,380 880,370 910,390 C940,360 1010,360 1040,400 C1080,390 1110,420 1100,460 C1080,490 860,490 840,480 Z" />
+  </g>
+
+  <!-- Giant Cute Hand-Drawn Retro Gamepad -->
+  <g transform="translate(640, 360)">
+    <!-- Gamepad Body -->
+    <path d="M-190,-70 C-110,-95 110,-95 190,-70 C240,-50 260,80 200,120 C160,150 120,80 80,80 C40,80 -40,80 -80,80 C-120,80 -160,150 -200,120 C-260,80 -240,-50 -190,-70 Z" 
+          fill="#ffffff" stroke="#232936" stroke-width="6" stroke-linejoin="round" />
+    
+    <!-- D-Pad (Left) -->
+    <path d="M-130,-40 L-100,-40 L-100,-70 L-70,-70 L-70,-40 L-40,-40 L-40,-10 L-70,-10 L-70,20 L-100,20 L-100,-10 L-130,-10 Z" 
+          fill="#ffd166" stroke="#232936" stroke-width="3.5" stroke-linejoin="round" />
+
+    <!-- Action Buttons (Right) -->
+    <circle cx="70" cy="-25" r="14" fill="#ff85a2" stroke="#232936" stroke-width="3.5" />
+    <circle cx="110" cy="-25" r="14" fill="#06d6a0" stroke="#232936" stroke-width="3.5" />
+    <circle cx="90" cy="-55" r="14" fill="#ffd166" stroke="#232936" stroke-width="3.5" />
+    <circle cx="90" cy="5" r="14" fill="#a0c4ff" stroke="#232936" stroke-width="3.5" />
+
+    <!-- Cute Smiling Face on Gamepad Center -->
+    <circle cx="-12" cy="15" r="4.5" fill="#232936" />
+    <circle cx="12" cy="15" r="4.5" fill="#232936" />
+    <path d="M-8,25 Q0,33 8,25" fill="none" stroke="#232936" stroke-width="3" stroke-linecap="round" />
+    <ellipse cx="-22" cy="22" rx="6" ry="3.5" fill="#ff85a2" />
+    <ellipse cx="22" cy="22" rx="6" ry="3.5" fill="#ff85a2" />
+  </g>
+
+  <!-- Title Text -->
+  <text x="640" y="580" font-family="'Shantell Sans', 'Patrick Hand', cursive" font-size="34" font-weight="900" fill="#232936" text-anchor="middle">
+    READY FOR DEPLOYMENT ☀
+  </text>
+</svg>

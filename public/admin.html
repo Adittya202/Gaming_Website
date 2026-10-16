@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Creator Desk & Deployment - GlitchNest Sunny Arcade</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#fdfbf7">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Floating Clouds & Radiant Sunshine Backdrop -->
+  <div class="cloud-sky-backdrop" aria-hidden="true">
+    <div class="sunshine-orb"></div>
+    <div class="doodle-cloud cloud-1"></div>
+    <div class="doodle-cloud cloud-2"></div>
+    <div class="doodle-cloud cloud-3"></div>
+  </div>
+
+  <!-- Access Control Security Gateway Overlay (Cute Hand-Drawn Lock) -->
+  <div class="auth-gateway-overlay" id="authOverlay" style="display: flex;">
+    <div class="auth-gateway-card">
+      <svg class="auth-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
+      </svg>
+      <h2 class="auth-title">CREATOR GATEWAY ✏</h2>
+      <p class="auth-desc">Enter your secret owner passcode to open your game deployment sketchbook.</p>
+      
+      <form id="authForm">
+        <input 
+          type="password" 
+          id="passcodeInput" 
+          class="auth-input" 
+          placeholder="ENTER PASSCODE" 
+          autocomplete="current-password"
+          required 
+          autofocus>
+        <div id="authErrorMsg" style="color: #b91c1c; font-family: var(--font-hand); font-size: 1.05rem; min-height: 1.4rem; margin-bottom: 0.75rem; font-weight: 700;"></div>
+        
+        <button type="submit" class="action-btn" style="width: 100%;">
+          UNLOCK CREATOR DESK ☀
+        </button>
+      </form>
+      
+      <div style="margin-top: 1.5rem; font-family: var(--font-hand); font-size: 1.05rem; color: var(--ink-muted);">
+        Default Passcode: <span style="color: var(--sunshine-orange); font-weight: 700;">glitchnest-2026</span>
+      </div>
+      <div style="margin-top: 0.5rem;">
+        <a href="index.html" style="font-family: var(--font-hand); font-size: 1.1rem; color: var(--ink-main); text-decoration: underline;">
+          &larr; Return to Sunny Arcade
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="header-container">
+      
+      <a href="index.html" class="brand-logo" aria-label="GlitchNest Home">
+        <img src="assets/logo.svg" alt="GlitchNest Sunny Arcade" class="brand-icon">
+        <span class="brand-text">Glitch<span style="color: var(--sunshine-orange)">Nest</span></span>
+        <span class="brand-badge">✏ DESK</span>
+      </a>
+
+      <nav class="header-actions" aria-label="Admin Navigation">
+        <a href="index.html" class="admin-nav-link" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          <span>VIEW LIVE SITE ☀</span>
+        </a>
+        <button id="logoutBtn" class="admin-nav-link" style="background: none; border: none; cursor: pointer;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          <span>LOGOUT</span>
+        </button>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Admin Portal Workspace -->
+  <main class="admin-wrapper">
+    
+    <div class="admin-header-bar">
+      <div class="admin-title-wrap">
+        <h1>GAME REGISTRY & DEPLOYMENT ✏</h1>
+        <p>Publish custom HTML5 games, manage the public sunny catalog, and configure live platform settings.</p>
+      </div>
+      <button type="button" id="presetBtn" class="action-btn action-btn-secondary" style="font-size: 0.95rem;">
+        ⚡ Auto-Fill Sample Doodle Game
+      </button>
+    </div>
+
+    <div class="admin-grid-layout">
+      
+      <!-- Column 1: Game Deployment Form -->
+      <section class="admin-card" aria-label="Game Deployment Form">
+        <h2 class="admin-card-title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          DEPLOY NEW TITLE ☀
+        </h2>
+
+        <form id="deployForm">
+          
+          <div class="form-group">
+            <label class="form-label" for="gameTitleInput">Game Title *</label>
+            <input 
+              type="text" 
+              id="gameTitleInput" 
+              class="form-input" 
+              placeholder="e.g., Sunny Cloud Jumper" 
+              required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="gameSlugInput">Unique Slug / ID *</label>
+            <input 
+              type="text" 
+              id="gameSlugInput" 
+              class="form-input" 
+              placeholder="e.g., sunny-cloud-jumper" 
+              style="font-family: var(--font-mono);"
+              required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="gameCategoryInput">Genre / Category</label>
+              <select id="gameCategoryInput" class="form-select">
+                <option value="Arcade">Arcade</option>
+                <option value="Action">Action</option>
+                <option value="Retro">Retro</option>
+                <option value="Puzzle">Puzzle</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="gameVersionInput">Version</label>
+              <input 
+                type="text" 
+                id="gameVersionInput" 
+                class="form-input" 
+                value="v1.0.0" 
+                style="font-family: var(--font-mono);">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="gameDescInput">Short Description</label>
+            <textarea 
+              id="gameDescInput" 
+              class="form-textarea" 
+              placeholder="Brief summary of gameplay, atmosphere, and mechanics..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="gameControlsInput">Control Scheme Instructions</label>
+            <textarea 
+              id="gameControlsInput" 
+              class="form-textarea" 
+              placeholder="Format: Key : Action (One per line)&#10;W A S D : Movement&#10;Space : Fire Lasers&#10;Mouse : Aim" 
+              style="font-family: var(--font-hand); font-size: 1.05rem;"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="gameThumbInput">16:9 Thumbnail Path or URL</label>
+            <input 
+              type="text" 
+              id="gameThumbInput" 
+              class="form-input" 
+              placeholder="/assets/thumbnails/custom-game.svg or https://..." 
+              value="/assets/thumbnails/default.svg">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="gameExecInput">Executable Path or Embed URL *</label>
+            <input 
+              type="text" 
+              id="gameExecInput" 
+              class="form-input" 
+              placeholder="/games/[slug]/index.html" 
+              style="font-family: var(--font-mono);"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="gameDevInput">Developer Credits</label>
+            <input 
+              type="text" 
+              id="gameDevInput" 
+              class="form-input" 
+              placeholder="Studio or Creator Name" 
+              value="GlitchNest Creator">
+          </div>
+
+          <div class="form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" id="gameFeaturedInput">
+              <label for="gameFeaturedInput" style="font-family: var(--font-hand); font-size: 1.1rem; cursor: pointer;">
+                Spotlight as "Featured Game of the Week"
+              </label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="gameVisibleInput" checked>
+              <label for="gameVisibleInput" style="font-family: var(--font-hand); font-size: 1.1rem; cursor: pointer;">
+                Publish immediately to sunny public catalog
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="action-btn" style="width: 100%; margin-top: 1rem;">
+            PUBLISH GAME TO GLITCHNEST ☀
+          </button>
+
+        </form>
+      </section>
+
+      <!-- Column 2: Catalog Management Table -->
+      <section class="admin-card" aria-label="Catalog Management">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+          <h2 class="admin-card-title" style="margin-bottom: 0;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <path d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            CATALOG REGISTRY
+          </h2>
+          <span class="game-counter" id="adminGameCount">0 REGISTERED</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Title / Slug</th>
+                <th>Genre</th>
+                <th>Status</th>
+                <th>Stats</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="catalogTableBody">
+              <!-- Populated via admin.js -->
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-bottom">
+        <div>GlitchNest Core Portal &bull; Creator Administration Area</div>
+        <div style="color: var(--sunshine-orange); font-weight:700;">REST API ACTIVE ☀</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Script -->
+  <script src="js/admin.js"></script>
+</body>
+</html>

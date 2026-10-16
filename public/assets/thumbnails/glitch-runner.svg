@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <pattern id="paperGrid5" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e2e8f0" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="720" fill="#f8f9fa" />
+  <rect width="1280" height="720" fill="url(#paperGrid5)" opacity="0.4" />
+
+  <!-- Smiling Sun in Center Sky -->
+  <g transform="translate(640, 160)">
+    <circle cx="0" cy="0" r="85" fill="#ffd166" stroke="#232936" stroke-width="5" />
+    <g stroke="#ffb703" stroke-width="5" stroke-linecap="round">
+      <line x1="0" y1="-105" x2="0" y2="-130" />
+      <line x1="75" y1="-75" x2="95" y2="-95" />
+      <line x1="105" y1="0" x2="130" y2="0" />
+      <line x1="-75" y1="-75" x2="-95" y2="-95" />
+      <line x1="-105" y1="0" x2="-130" y2="0" />
+    </g>
+    <!-- Face -->
+    <circle cx="-25" cy="-10" r="7" fill="#232936" />
+    <circle cx="25" cy="-10" r="7" fill="#232936" />
+    <path d="M-20,15 Q0,35 20,15" fill="none" stroke="#232936" stroke-width="5" stroke-linecap="round" />
+    <ellipse cx="-35" cy="10" rx="10" ry="5" fill="#ff85a2" />
+    <ellipse cx="35" cy="10" rx="10" ry="5" fill="#ff85a2" />
+  </g>
+
+  <!-- Giant Fluffy Cloud Stepping Stones -->
+  <g fill="#ffffff" stroke="#232936" stroke-width="4.5" stroke-linejoin="round">
+    <!-- Cloud Left -->
+    <path d="M120,440 C80,440 60,390 80,350 C100,320 150,310 180,330 C200,290 270,290 300,330 C340,300 400,330 400,370 C430,390 430,430 400,450 Z" />
+    <!-- Cloud Center Leaping Pad -->
+    <path d="M480,340 C450,340 430,300 450,270 C470,240 520,230 550,250 C580,220 640,220 670,250 C710,240 750,260 750,300 C780,320 770,350 740,370 Z" />
+    <!-- Cloud Right Landing -->
+    <path d="M860,420 C820,420 800,370 820,330 C840,300 890,290 920,310 C950,270 1020,270 1050,310 C1090,290 1150,310 1150,360 C1180,380 1180,420 1140,440 Z" />
+  </g>
+
+  <!-- Hand-Drawn Doodle Stickman Parkour Runner Mid-Air -->
+  <g transform="translate(560, 210) rotate(-15)">
+    <!-- Head with Bandana -->
+    <circle cx="0" cy="-40" r="16" fill="#ffd166" stroke="#232936" stroke-width="4" />
+    <!-- Bandana Tails flying back -->
+    <path d="M-15,-40 Q-35,-45 -45,-35 Q-35,-30 -15,-35" fill="#ff85a2" stroke="#232936" stroke-width="2.5" />
+    <!-- Happy Face -->
+    <circle cx="5" cy="-42" r="2.5" fill="#232936" />
+    <path d="M2,-35 Q7,-30 11,-36" fill="none" stroke="#232936" stroke-width="2.5" stroke-linecap="round" />
+    
+    <!-- Torso -->
+    <line x1="0" y1="-24" x2="10" y2="20" stroke="#232936" stroke-width="6" stroke-linecap="round" />
+
+    <!-- Arms swinging -->
+    <path d="M2,-15 L-25,-5 L-40,-25" fill="none" stroke="#232936" stroke-width="5" stroke-linecap="round" />
+    <path d="M4,-15 L25,-5 L45,15" fill="none" stroke="#232936" stroke-width="5" stroke-linecap="round" />
+
+    <!-- Legs in dynamic stride -->
+    <path d="M10,20 L35,45 L60,35" fill="none" stroke="#232936" stroke-width="5" stroke-linecap="round" />
+    <path d="M10,20 L-15,45 L-35,30" fill="none" stroke="#232936" stroke-width="5" stroke-linecap="round" />
+
+    <!-- Speed Dash Scribbles -->
+    <g stroke="#ffb703" stroke-width="3.5" stroke-linecap="round">
+      <line x1="-60" y1="-10" x2="-35" y2="-10" />
+      <line x1="-70" y1="5" x2="-45" y2="5" />
+      <line x1="-55" y1="20" x2="-30" y2="20" />
+    </g>
+  </g>
+
+  <!-- Cute Hand-Drawn Rooftops at Bottom -->
+  <polygon points="100,720 100,520 280,440 460,520 460,720" fill="#ffb703" stroke="#232936" stroke-width="5" />
+  <polygon points="520,720 520,560 760,560 760,720" fill="#a0c4ff" stroke="#232936" stroke-width="5" />
+  <polygon points="820,720 820,500 1020,420 1200,500 1200,720" fill="#ff99c8" stroke="#232936" stroke-width="5" />
+
+  <!-- Title Banner -->
+  <g transform="translate(60, 50) rotate(-2)">
+    <rect x="0" y="0" width="290" height="52" fill="#ffd166" stroke="#232936" stroke-width="3.5" rx="6" />
+    <text x="145" y="35" font-family="'Shantell Sans', 'Patrick Hand', cursive" font-size="24" font-weight="900" fill="#232936" text-anchor="middle">
+      GLITCH RUNNER 🏃‍♂️☁
+    </text>
+  </g>
+</svg>

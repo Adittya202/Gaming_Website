@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Best Practices -->
+  <title>GlitchNest ☀ | Sunny Clouds & Hand-Drawn Indie Arcade</title>
+  <meta name="description" content="A cheerful, hand-sketched browser gaming portal filled with clouds, warm sunshine, and custom HTML5 arcade games.">
+  <meta name="theme-color" content="#fdfbf7">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <!-- ======================================================================
+       GOOGLE ADSENSE INTEGRATION POINT
+       INSTRUCTIONS:
+       1. Replace 'ca-pub-XXXXXXXXXXXXXXXX' with your approved AdSense Publisher ID.
+       2. Uncomment the script tag below when ready for production deployment.
+       ====================================================================== -->
+  <!--
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+          crossorigin="anonymous"></script>
+  -->
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Floating Clouds & Radiant Sunshine Backdrop -->
+  <div class="cloud-sky-backdrop" aria-hidden="true">
+    <div class="sunshine-orb"></div>
+    <div class="doodle-cloud cloud-1"></div>
+    <div class="doodle-cloud cloud-2"></div>
+    <div class="doodle-cloud cloud-3"></div>
+  </div>
+
+  <!-- Site Header & Navigation -->
+  <header class="site-header" role="banner">
+    <div class="header-container">
+      
+      <!-- Brand Logo with Cute Sunshine & Cloud Doodle -->
+      <a href="index.html" class="brand-logo" id="brandLogo" aria-label="GlitchNest Home">
+        <img src="assets/logo.svg" alt="GlitchNest Sunny Arcade" class="brand-icon">
+        <span class="brand-text">Glitch<span style="color: var(--sunshine-orange)">Nest</span></span>
+        <span class="brand-badge">☀ ARCADE</span>
+      </a>
+
+      <!-- Hand-Drawn Search Bar -->
+      <div class="search-wrapper" role="search">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input 
+          type="text" 
+          id="catalogSearch" 
+          class="search-input-box" 
+          placeholder="Doodle search games, tags, genres... (Press '/')" 
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="Search game catalog">
+        <button id="searchClearBtn" class="search-clear-btn" aria-label="Clear search query">✕</button>
+      </div>
+
+      <!-- Discreet Admin Portal Link -->
+      <nav class="header-actions" aria-label="Portal Navigation">
+        <a href="admin.html" class="admin-nav-link" id="adminPortalLink" title="Creator & Owner Dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>CREATOR DESK</span>
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Category Pills Filter Bar (Pastel Sticker Badges) -->
+  <section class="category-bar-section" aria-label="Game Categories">
+    <div class="category-pills" id="categoryPills">
+      <button class="pill-btn active" data-category="All">☀ All Games</button>
+      <button class="pill-btn" data-category="Arcade">☁ Arcade</button>
+      <button class="pill-btn" data-category="Action">⚡ Action</button>
+      <button class="pill-btn" data-category="Retro">⭐ Retro</button>
+      <button class="pill-btn" data-category="Puzzle">🧩 Puzzle</button>
+    </div>
+  </section>
+
+  <!-- Main Content Wrapper -->
+  <main id="mainContent">
+
+    <!-- Hero Spotlight: Hand-Sketched Open Notebook Banner -->
+    <section class="hero-section" aria-label="Featured Game Spotlight">
+      <div id="heroSpotlight">
+        <article class="hero-card">
+          <div class="hero-media-wrapper">
+            <img src="assets/thumbnails/demo-game.svg" alt="Neon Bounce Arcade" class="hero-thumbnail">
+          </div>
+          <div class="hero-content">
+            <div class="spotlight-tag">FEATURED GAME OF THE WEEK</div>
+            <h1 class="hero-title">Neon Bounce Arcade</h1>
+            <p class="hero-synopsis">
+              A cheerful, bouncy cloud-and-sunshine block breaker. Deflect bouncing sunballs, trigger multi-ball showers, and pop colorful pastel blocks!
+            </p>
+            <div class="hero-meta">
+              <span class="meta-pill highlight">★ 5.0 RATING</span>
+              <span class="meta-pill">⚡ 189K PLAYS</span>
+              <span class="meta-pill">☁ Arcade</span>
+              <span class="meta-pill">v1.0 DEMO</span>
+            </div>
+            <div class="hero-actions">
+              <a href="play.html?id=demo-game" class="action-btn hero-play-btn" id="heroPlayBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                PLAY NOW ☀
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- AdSense Slot #1: Hand-Sketched Leaderboard (728x90 desktop / 320x50 mobile) -->
+    <section class="ad-container ad-leaderboard" aria-label="Advertisement Banner">
+      <span class="ad-label">☁ DOODLE SPONSOR SPOT ☁</span>
+      <div class="ad-slot-frame" id="adSlot1">
+        <!-- Standard Google AdSense unit markup -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="1234567890"></ins>
+        <!-- Clean local dev fallback preview -->
+        <div class="ad-placeholder-text">
+          <span>[ADSENSE DEV PREVIEW // LEADERBOARD BANNER]</span>
+          <div class="ad-placeholder-id">Slot #1 &bull; 728x90 Desktop / 320x50 Mobile</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- YouTube-Style 16:9 Game Catalog Grid (Sketchbook Cards) -->
+    <section class="catalog-section" aria-label="Game Catalog Grid">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h2 class="section-title">ALL TITLES ☀</h2>
+          <span class="game-counter" id="gameCount">LOADING...</span>
+        </div>
+      </div>
+
+      <!-- 16:9 Grid Container -->
+      <div class="games-grid" id="gamesGrid" role="feed" aria-busy="true">
+        <!-- Populated via client-side fetch from /api/games -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Hand-Sketched Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 0.5rem;">
+            <span class="brand-text">Glitch<span style="color: var(--sunshine-orange)">Nest</span></span>
+            <span style="font-size: 1.5rem; margin-left: 4px;">☁</span>
+          </div>
+          <p class="footer-tagline">
+            Hand-sketched browser gaming portal filled with warm sunshine, friendly clouds, and pure 60fps indie arcade games.
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">☀ Arcade Home</a>
+          <a href="admin.html">✏ Creator Desk</a>
+          <a href="#mainContent">↑ Top of Page</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 GlitchNest Sunny Portal. Hand-crafted with sunshine & clouds.</div>
+        <div style="color: var(--sunshine-orange); font-weight: 700;">PURE 60 FPS // ZERO BLOAT</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Script -->
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <pattern id="paperGrid4" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e2e8f0" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="720" fill="#fffdfa" />
+  <rect width="1280" height="720" fill="url(#paperGrid4)" opacity="0.4" />
+
+  <!-- Sunshine & Rays -->
+  <g transform="translate(180, 160)">
+    <circle cx="0" cy="0" r="90" fill="#ffd166" stroke="#232936" stroke-width="5" />
+    <g stroke="#ffb703" stroke-width="6" stroke-linecap="round">
+      <line x1="0" y1="-115" x2="0" y2="-145" />
+      <line x1="80" y1="-80" x2="105" y2="-105" />
+      <line x1="115" y1="0" x2="145" y2="0" />
+      <line x1="80" y1="80" x2="105" y2="105" />
+      <line x1="0" y1="115" x2="0" y2="145" />
+      <line x1="-80" y1="80" x2="-105" y2="105" />
+      <line x1="-115" y1="0" x2="-145" y2="0" />
+      <line x1="-80" y1="-80" x2="-105" y2="-105" />
+    </g>
+    <!-- Cute Happy Sun Face -->
+    <circle cx="-25" cy="-10" r="8" fill="#232936" />
+    <circle cx="25" cy="-10" r="8" fill="#232936" />
+    <path d="M-20,15 Q0,35 20,15" fill="none" stroke="#232936" stroke-width="5" stroke-linecap="round" />
+    <ellipse cx="-35" cy="12" rx="10" ry="5" fill="#ff85a2" />
+    <ellipse cx="35" cy="12" rx="10" ry="5" fill="#ff85a2" />
+  </g>
+
+  <!-- Puffy Doodle Clouds -->
+  <g fill="#ffffff" stroke="#232936" stroke-width="4.5" stroke-linejoin="round">
+    <path d="M780,180 C740,180 720,140 740,110 C760,80 810,70 840,90 C870,60 940,60 970,100 C1010,80 1060,100 1060,150 C1090,160 1090,200 1060,220 C1040,240 800,230 780,180 Z" />
+  </g>
+
+  <!-- Giant Hand-Drawn Crystal Prism in Center -->
+  <g transform="translate(640, 420)">
+    <polygon points="0,-160 140,100 -140,100" fill="#ffffff" stroke="#232936" stroke-width="6" stroke-linejoin="round" />
+    <!-- Inner faceted lines -->
+    <line x1="0" y1="-160" x2="30" y2="100" stroke="#a0c4ff" stroke-width="4" />
+    <line x1="0" y1="-160" x2="-30" y2="100" stroke="#a0c4ff" stroke-width="4" />
+
+    <!-- Cute Prism Happy Eyes -->
+    <circle cx="-20" cy="15" r="7" fill="#232936" />
+    <circle cx="20" cy="15" r="7" fill="#232936" />
+    <path d="M-12,35 Q0,48 12,35" fill="none" stroke="#232936" stroke-width="4" stroke-linecap="round" />
+    <ellipse cx="-36" cy="30" rx="9" ry="5" fill="#ff85a2" />
+    <ellipse cx="36" cy="30" rx="9" ry="5" fill="#ff85a2" />
+  </g>
+
+  <!-- Refracted Hand-Drawn Rainbow Light Beam -->
+  <g stroke-width="14" stroke-linecap="round" fill="none">
+    <path d="M180,160 L640,400" stroke="#ffd166" stroke-width="12" />
+    <!-- Rainbow spreading out right -->
+    <path d="M680,410 L1150,280" stroke="#ff85a2" />
+    <path d="M685,425 L1160,330" stroke="#ffb703" />
+    <path d="M685,440 L1170,380" stroke="#06d6a0" />
+    <path d="M680,455 L1160,430" stroke="#118ab2" />
+    <path d="M670,470 L1140,480" stroke="#9d4edd" />
+  </g>
+
+  <!-- Doodle Sparkles & Stars -->
+  <g stroke="#ffb703" stroke-width="4" stroke-linecap="round">
+    <path d="M920,490 L920,520 M905,505 L935,505" />
+    <path d="M420,520 L420,545 M408,532 L432,532" />
+  </g>
+
+  <!-- Title Banner -->
+  <g transform="translate(60, 50) rotate(-2)">
+    <rect x="0" y="0" width="310" height="52" fill="#ffd166" stroke="#232936" stroke-width="3.5" rx="6" />
+    <text x="155" y="35" font-family="'Shantell Sans', 'Patrick Hand', cursive" font-size="24" font-weight="900" fill="#232936" text-anchor="middle">
+      QUANTUM PULSE 🌈✨
+    </text>
+  </g>
+</svg>
