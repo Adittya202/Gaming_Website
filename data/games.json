@@ -1,42 +1,5 @@
 [
   {
-    "id": "bucc-promotion-hub",
-    "slug": "bucc-promotion-hub",
-    "title": "BUCC Promotion Hub",
-    "category": "Action",
-    "tags": [
-      "Action",
-      "Arcade",
-      "GlitchNest"
-    ],
-    "description": "BUCC Promotional Hub game with dynamic mechanics, high agility reflexes, and leaderboard challenges.",
-    "synopsis": "BUCC Promotional Hub arcade title by Adittya Dey.",
-    "thumbnail": "/assets/thumbnails/bucc-promotion-hub-1792142734041.png",
-    "executable": "https://buccpromotiongame.vercel.app",
-    "version": "v1.0.0",
-    "developer": "Adittya Dey",
-    "rating": "5.0",
-    "plays": "12.4K",
-    "featured": true,
-    "visible": true,
-    "controls": [
-      {
-        "key": "Spacebar",
-        "action": "Jump / Agility Leap"
-      },
-      {
-        "key": "Left Click",
-        "action": "Activate Shield Barrier"
-      },
-      {
-        "key": "Right Click",
-        "action": "Fire Weapon Blast"
-      }
-    ],
-    "instructions": "Use controls to navigate obstacles, activate your energy shields when under threat, and fire blasts to score points.",
-    "highScoreGoal": "Aim for the GlitchNest leaderboard top spot!"
-  },
-  {
     "id": "neon-bounce-arcade",
     "slug": "neon-bounce-arcade",
     "title": "Neon Bounce Arcade: Sunny Cloud Edition",
